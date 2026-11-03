@@ -1,0 +1,38 @@
+name: Check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: mkdocs build --strict
+
+  java-examples:
+    name: Run Java examples
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "25"
+      # Runs every standalone example (```java title="Hello.java").
+      # Robot project examples need the WPILib 2027 toolchain and are skipped here.
+      - run: python3 tools/check_java.py docs "$JAVA_HOME/bin/java" "$RUNNER_TEMP/java-check"
