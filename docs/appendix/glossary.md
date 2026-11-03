@@ -7,6 +7,7 @@
 | A301 | A301 致動器 | 2027 新的 FIRST 致動器，接在 Motioncore 的 Device port |
 | Absolute encoder | 絕對式編碼器 | 斷電後仍然知道目前角度的編碼器 |
 | Actuator | 致動器 | 會讓機器人動起來的元件，例如馬達、氣壓缸 |
+| Alert | 警示 | 顯示在 Dashboard 上、提醒駕駛的訊息，例如相機斷線 |
 | Alliance | 聯盟 | 每場比賽的紅、藍兩方，各由 3 支隊伍組成 |
 | AprilTag | AprilTag | 場地上有編號的黑白方塊圖案，相機看到它就能算出位置 |
 | Arbitrary feedforward | 額外前饋 | 自己算好、加在馬達控制器輸出上的電壓，例如手臂的重力補償 |
@@ -14,14 +15,18 @@
 | Autonomous period | 自動階段 | 比賽一開始機器人照程式自己動的時間 |
 | Beam break | 光遮斷感測器 | 光線被擋住時觸發，常用來偵測遊戲物件 |
 | Brake / Coast | 煞車 / 滑行 | 馬達輸出為 0 時，要抵抗轉動還是自由轉動 |
+| Branch | 分支 | Git 中從某個版本分出去、獨立修改的線 |
+| Brownout | 電壓不足 | 電池電壓太低時，系統暫時關掉馬達輸出的保護機制 |
 | Brushless motor | 無刷馬達 | 沒有碳刷的馬達，效率高，需要搭配無刷馬達控制器 |
 | CAN (Controller Area Network) | CAN 匯流排 | 讓控制器和各種裝置互相傳資料的通訊線路 |
 | CAN ID | CAN 編號 | 每個 CAN 裝置在同一條匯流排上的唯一編號 |
 | Circuit breaker | 斷路器 | 電流過大時自動斷電，保護線路 |
 | Closed loop / Open loop | 閉迴路 / 開迴路 | 是否根據感測器量到的結果修正輸出 |
+| Code review | 程式碼審查 | 合併之前請別人看過程式碼 |
 | Command | Command（指令） | 機器人要執行的一個動作，例如「Intake 吸入」 |
 | Command factory | 指令工廠方法 | 回傳 Command 的方法，例如 `intake.intakeCommand()` |
 | Commands v2 / v3 | Commands v2 / v3 | WPILib 的兩代 Command-based 框架，本教學以 v2 為主 |
+| Commit | 提交 | Git 中存下的一個版本 |
 | Coprocessor | 協同處理器 | 額外的小電腦，通常拿來跑視覺 |
 | Coroutine | 協程 | 可以暫停、之後再繼續執行的程式，Commands v3 用它來寫 Command |
 | Current limit | 電流限制 | 限制馬達最多能使用的電流，保護馬達和電池 |
@@ -49,9 +54,11 @@
 | Inverted | 反轉 | 讓馬達的正方向反過來的設定 |
 | Kinematics | 運動學 | 機器人整體速度和各個輪子速度之間的換算 |
 | Limit switch | 極限開關 | 機構碰到時觸發的開關，用來限制行程 |
+| Log | 記錄檔 | 機器人執行時記錄下來的資料，事後可以回放 |
 | MAXMotion | MAXMotion | REV 馬達控制器內建的 Motion Profile 功能 |
 | Mechanism | Mechanism（機構） | Commands v3 裡代表一個機構的物件，對應 v2 的 Subsystem |
 | MegaTag | MegaTag | Limelight 用 AprilTag 計算機器人位置的方法，MegaTag2 會用到機器人的朝向 |
+| Merge conflict | 合併衝突 | 兩個人改了同一個地方，Git 無法自動合併 |
 | Motion Magic | Motion Magic | CTRE 馬達控制器內建的 Motion Profile 功能 |
 | Motion Profile | 運動曲線 | 事先規劃好每個時間點的位置和速度，讓機構平順地移動 |
 | Motioncore | Motioncore | 2027 的 CAN 與電源分配裝置 |
@@ -67,6 +74,7 @@
 | Pipeline | 處理流程 | 視覺系統中一組影像處理的設定，例如 AprilTag 偵測 |
 | Pose estimation | 姿態估計 | 結合 Odometry 和視覺等多種來源，估計機器人的位置 |
 | Pose2d | 位姿 | 機器人在場上的 X、Y 座標和朝向 |
+| Pull request (PR) | 合併請求 | 請求把一個 Branch 的修改合併到另一個 Branch |
 | Requirements | 需求 | Command 會使用哪些 Subsystem，Scheduler 用它避免衝突 |
 | Robot-relative | 機器人座標 | 以機器人自己為準的方向，「前」是機器人面向的方向 |
 | RPM (Rotations Per Minute) | 每分鐘轉數 | 轉速的單位，REV 的編碼器速度使用這個單位 |
@@ -83,12 +91,14 @@
 | Swerve module | Swerve 模組 | Swerve 底盤的一個角落，包含驅動馬達、轉向馬達和絕對式編碼器 |
 | SysId | 系統識別 | 量測機構特性、算出 Feedforward 參數的 WPILib 工具 |
 | Systemcore | Systemcore | 2027 的機器人主控制器，取代 roboRIO |
+| Tag | 標籤 | 為某個 Git 版本取的名字，例如比賽的場次 |
 | Tank drive | 坦克式操控 | 左右搖桿分別控制左右兩邊輪子的底盤操控方式 |
 | Telemetry | 遙測 | 把機器人的資料傳回電腦顯示或記錄 |
 | Timestamp | 時間戳記 | 資料是在什麼時間點量到的 |
 | Trapezoid profile | 梯形速度曲線 | 先加速、等速巡航、再減速的 Motion Profile |
 | Trigger | Trigger（觸發條件） | 條件成立時啟動 Command，例如按下按鈕 |
 | tx / ty | 水平 / 垂直角度 | 目標相對於相機畫面中央的角度 |
+| Unit test | 單元測試 | 不需要機器人、自動檢查程式邏輯的測試 |
 | Vendor dependency (vendordep) | 廠商函式庫 | 廠商提供的程式庫，例如 REVLib、Phoenix 6 |
 | Yaw | 偏航角 | 繞著垂直軸轉動的角度，也就是機器人的朝向 |
 | Zero offset | 零點偏移 | 讓絕對式編碼器在指定位置讀到 0 的設定 |
