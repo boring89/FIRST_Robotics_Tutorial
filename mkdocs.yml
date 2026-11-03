@@ -1,0 +1,172 @@
+site_name: FRC 程式新手教學
+site_description: 給 FIRST Robotics Competition 新手的 Java 程式教學（WPILib 2027）
+site_url: https://boring89.github.io/FIRST_Robotics_Tutorial/
+repo_url: https://github.com/boring89/FIRST_Robotics_Tutorial
+repo_name: boring89/FIRST_Robotics_Tutorial
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: zh-TW
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: 切換為深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: 切換為淺色模式
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang:
+        - en
+        - zh
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets:
+      base_path: [includes]
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - 首頁: index.md
+  - 入門:
+      - 第 0 章 開始之前:
+          - 00-intro/index.md
+          - 這份教學怎麼讀: 00-intro/how-to-read.md
+          - 延伸學習: 00-intro/further.md
+      - 第 1 章 Java 速成:
+          - 01-java/index.md
+          - 變數與型別: 01-java/variables.md
+          - 條件與迴圈: 01-java/control-flow.md
+          - 方法: 01-java/methods.md
+          - 類別與物件: 01-java/classes.md
+          - 繼承與介面: 01-java/inheritance.md
+          - Lambda: 01-java/lambda.md
+          - 延伸學習: 01-java/further.md
+      - 第 2 章 FRC 基本元件認識:
+          - 02-hardware/index.md
+          - Systemcore 主控制器: 02-hardware/systemcore.md
+          - 電源與 Motioncore: 02-hardware/power.md
+          - 馬達與馬達控制器: 02-hardware/motors.md
+          - 感測器: 02-hardware/sensors.md
+          - Driver Station 與手把: 02-hardware/driver-station.md
+          - 延伸學習: 02-hardware/further.md
+      - 第 3 章 環境建置:
+          - 03-setup/index.md
+          - 安裝 WPILib: 03-setup/install-wpilib.md
+          - 建立第一個專案: 03-setup/first-project.md
+          - 廠商工具: 03-setup/vendor-tools.md
+          - 韌體與 CAN 設定: 03-setup/firmware-can.md
+          - 延伸學習: 03-setup/further.md
+  - 機器人程式:
+      - 第 4 章 機器人程式基礎:
+          - 04-robot-basics/index.md
+          - 程式的生命週期: 04-robot-basics/lifecycle.md
+          - 讓馬達轉起來: 04-robot-basics/first-motor.md
+          - 讀取手把輸入: 04-robot-basics/gamepad.md
+          - 部署與除錯: 04-robot-basics/deploy-debug.md
+          - 延伸學習: 04-robot-basics/further.md
+      - 第 5 章 Command-based 架構:
+          - 05-commands/index.md
+          - 為什麼要用 Command-based: 05-commands/why.md
+          - Subsystem: 05-commands/subsystem.md
+          - Command: 05-commands/commands.md
+          - Trigger 與按鍵綁定: 05-commands/triggers.md
+          - 組合 Command: 05-commands/composition.md
+          - RobotContainer: 05-commands/robot-container.md
+          - 延伸學習: 05-commands/further.md
+      - 第 6 章 馬達與感測器:
+          - 06-motors-sensors/index.md
+          - 馬達控制器設定: 06-motors-sensors/motor-config.md
+          - 編碼器: 06-motors-sensors/encoders.md
+          - 陀螺儀與 IMU: 06-motors-sensors/gyro.md
+          - 數位感測器: 06-motors-sensors/digital-sensors.md
+          - 延伸學習: 06-motors-sensors/further.md
+      - 第 7 章 底盤:
+          - 07-drivetrain/index.md
+          - 差速底盤: 07-drivetrain/differential.md
+          - Swerve 入門: 07-drivetrain/swerve.md
+          - 延伸學習: 07-drivetrain/further.md
+  - 進階:
+      - 第 8 章 控制入門:
+          - 08-control/index.md
+          - PID: 08-control/pid.md
+          - Feedforward: 08-control/feedforward.md
+          - Motion Profile: 08-control/motion-profile.md
+          - SysId: 08-control/sysid.md
+          - 延伸學習: 08-control/further.md
+      - 第 9 章 自動階段:
+          - 09-autonomous/index.md
+          - 用時間控制: 09-autonomous/timed.md
+          - 用編碼器控制: 09-autonomous/encoder-based.md
+          - Odometry: 09-autonomous/odometry.md
+          - PathPlanner: 09-autonomous/pathplanner.md
+          - 延伸學習: 09-autonomous/further.md
+      - 第 10 章 視覺:
+          - 10-vision/index.md
+          - AprilTag: 10-vision/apriltag.md
+          - Limelight 與 PhotonVision: 10-vision/limelight-photonvision.md
+          - 延伸學習: 10-vision/further.md
+      - 第 11 章 實戰:
+          - 11-practice/index.md
+          - 用 Git 分工: 11-practice/git.md
+          - 用 AdvantageScope 看 log: 11-practice/logging.md
+          - 賽場檢查清單: 11-practice/checklist.md
+          - 常見錯誤排查: 11-practice/troubleshooting.md
+          - 延伸學習: 11-practice/further.md
+  - 附錄:
+      - 名詞對照表: appendix/glossary.md
+      - 寫作規範: appendix/style-guide.md
