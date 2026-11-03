@@ -14,7 +14,6 @@ theme:
     - navigation.indexes
     - navigation.top
     - navigation.footer
-    - navigation.instant
     - search.highlight
     - search.suggest
     - content.code.copy
@@ -38,6 +37,9 @@ theme:
         name: 切換為淺色模式
   icon:
     repo: fontawesome/brands/github
+
+extra_css:
+  - assets/sim/sim.css
 
 plugins:
   - search:
@@ -167,6 +169,13 @@ nav:
           - 賽場檢查清單: 11-practice/checklist.md
           - 常見錯誤排查: 11-practice/troubleshooting.md
           - 延伸學習: 11-practice/further.md
+  - 機構範例:
+      - 第 12 章 機構範例:
+          - 12-mechanisms/index.md
+          - 手臂 Arm: 12-mechanisms/arm.md
+          - 飛輪 Shooter: 12-mechanisms/flywheel.md
+          - 升降機構 Elevator: 12-mechanisms/elevator.md
+          - 底盤 Drivetrain: 12-mechanisms/drivetrain.md
   - 附錄:
       - 名詞對照表: appendix/glossary.md
       - 寫作規範: appendix/style-guide.md
