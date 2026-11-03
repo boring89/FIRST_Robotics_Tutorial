@@ -31,6 +31,7 @@ public final class Constants {
     public static final int CANCODER_ID = 40;
     public static final int CURRENT_LIMIT = 40;
     public static final double ABSOLUTE_OFFSET_ROTATIONS = 0.0;
+    public static final double STOWED_ANGLE_DEGREES = -30.0;
     public static final int BOTTOM_LIMIT_CHANNEL = 1;
   }
 

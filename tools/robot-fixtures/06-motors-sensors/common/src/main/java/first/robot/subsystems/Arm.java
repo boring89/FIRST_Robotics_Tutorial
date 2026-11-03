@@ -28,9 +28,9 @@ public class Arm extends SubsystemBase {
     motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  /** 手臂角度，單位：度。Through Bore Encoder 裝在手臂的轉軸上。 */
+  /** 手臂角度，單位：度，水平為 0。Through Bore Encoder 裝在手臂的轉軸上，零點設在收起的位置。 */
   public double getAngleDegrees() {
-    return absoluteEncoder.getPosition().get(0.0) * 360.0;
+    return absoluteEncoder.getPosition().get(0.0) * 360.0 + ArmConstants.STOWED_ANGLE_DEGREES;
   }
 
   /** 手臂是否碰到底部的極限開關。實際讀值要看接法，必要時拿掉 ! 號。 */

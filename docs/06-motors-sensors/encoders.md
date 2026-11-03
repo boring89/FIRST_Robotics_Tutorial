@@ -87,12 +87,14 @@ double meters = motorRotations / DRIVE_GEAR_RATIO * Math.PI * WHEEL_DIAMETER_MET
 
     用 `CANcoderConfiguration` 的 `MagnetSensor.MagnetOffset` 設定零點。
 
-**零點 (Zero offset)**：編碼器裝上去的位置是隨機的，讀到 0 的地方不一定是手臂水平的地方。先把 offset 設成 0，把手臂擺到你想當作 0 度的位置，記下這時候的讀值：
+**零點 (Zero offset)**：編碼器裝上去的位置是隨機的，讀到 0 的地方不一定是你想要的位置。先把 offset 設成 0，把手臂擺到你想當作零點的位置，記下這時候的讀值：
 
 - **REV**：`zeroOffset` 是「要當作 0 的位置」，直接填入這個讀值
 - **CTRE**：`MagnetOffset` 是「加到讀值上的數」，要填入這個讀值的**負數**
 
 之後讀值就會以這個位置為 0。
+
+**零點要設在哪裡？** 絕對式編碼器的讀值在轉滿一圈的地方會「跳回去」（例如 REV 從 0.99 圈跳回 0）。所以零點要設在**手臂活動範圍的一端**，通常是**收起的位置**（靠在擋塊上），讓手臂從收起轉到最高點都不會經過跳躍點。程式裡再加上收起時的角度（`STOWED_ANGLE_DEGREES`），換算成「水平為 0 度」的角度，[第 8 章](../08-control/feedforward.md) 計算重力補償時會用到。
 
 ## 範例
 
@@ -247,6 +249,7 @@ public static final class ArmConstants {
   public static final int CANCODER_ID = 40;      // CTRE 才需要
   public static final int CURRENT_LIMIT = 40;
   public static final double ABSOLUTE_OFFSET_ROTATIONS = 0.0;   // 實際測量後填入
+  public static final double STOWED_ANGLE_DEGREES = -30.0;      // 收起時的角度（水平為 0）
   public static final int BOTTOM_LIMIT_CHANNEL = 1;             // 下一頁用到
 }
 ```
@@ -282,9 +285,9 @@ public static final class ArmConstants {
         motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
       }
 
-      /** 手臂角度，單位：度。Through Bore Encoder 裝在手臂的轉軸上。 */
+      /** 手臂角度，單位：度，水平為 0。Through Bore Encoder 裝在手臂的轉軸上，零點設在收起的位置。 */
       public double getAngleDegrees() {
-        return absoluteEncoder.getPosition().get(0.0) * 360.0;
+        return absoluteEncoder.getPosition().get(0.0) * 360.0 + ArmConstants.STOWED_ANGLE_DEGREES;
       }
 
       public void setThrottle(double throttle) {
@@ -341,9 +344,9 @@ public static final class ArmConstants {
         cancoder.getConfigurator().apply(encoderConfig);
       }
 
-      /** 手臂角度，單位：度。CANcoder 裝在手臂的轉軸上。 */
+      /** 手臂角度，單位：度，水平為 0。CANcoder 裝在手臂的轉軸上，零點設在收起的位置。 */
       public double getAngleDegrees() {
-        return cancoder.getAbsolutePosition().getValueAsDouble() * 360.0;
+        return cancoder.getAbsolutePosition().getValueAsDouble() * 360.0 + ArmConstants.STOWED_ANGLE_DEGREES;
       }
 
       public void setThrottle(double throttle) {
@@ -382,11 +385,11 @@ arm.setDefaultCommand(arm.manualCommand(() -> -driver.getRightY() * 0.3));
 !!! bug "常見錯誤：REV 和 CTRE 的速度單位搞混"
     REV 是 RPM，CTRE 是每秒轉數。從 CTRE 換到 REV（或反過來）時，忘了乘除 60，轉速判斷就會完全錯。
 
-!!! bug "常見錯誤：絕對式編碼器的讀值跨過 0"
-    REV Through Bore 的讀值是 0～1 圈，手臂如果轉過「1 圈 → 0 圈」的位置，角度會從 359 度突然跳到 0 度。調整零點，讓手臂的整個活動範圍都不會跨過這個跳躍點。
+!!! bug "常見錯誤：絕對式編碼器的讀值跨過跳躍點"
+    REV Through Bore 的讀值是 0～1 圈，手臂如果轉過「1 圈 → 0 圈」的位置，角度會從 359 度突然跳到 0 度，控制程式會以為手臂瞬間轉了一整圈。把零點設在收起的位置，讓手臂的整個活動範圍都不會跨過這個跳躍點。
 
 ## 小練習
 
 1. 在 Elastic 上觀察 `Shooter/RPM`，從按下發射到 `Shooter/AtSpeed` 變成 `true` 大約要多久？
-2. 先把 `ABSOLUTE_OFFSET_ROTATIONS` 設成 0，用手把手臂擺到水平位置，記下 `Arm/AngleDegrees`，算出正確的 `ABSOLUTE_OFFSET_ROTATIONS`，讓水平時讀到 0 度。（注意 REV 和 CTRE 的正負號不同，而且 offset 的單位是圈，不是度）
+2. 先把 `ABSOLUTE_OFFSET_ROTATIONS` 設成 0，把手臂放在收起的位置，記下這時候的讀值，算出正確的 `ABSOLUTE_OFFSET_ROTATIONS`（注意 REV 和 CTRE 的正負號不同，而且 offset 的單位是圈，不是度）。再用量角器量出收起時手臂和水平的夾角，填入 `STOWED_ANGLE_DEGREES`，確認手臂水平時 `Arm/AngleDegrees` 接近 0。
 3. 在 `Intake` 加上 `getRpm()`，並用 Telemetry 顯示。Intake 卡住時轉速會有什麼變化？可以拿來做什麼？

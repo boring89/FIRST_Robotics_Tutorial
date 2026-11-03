@@ -56,7 +56,7 @@
 - 機器人專案裡的完整檔案，標題寫專案內的路徑：`` ```java title="src/main/java/first/robot/Robot.java" ``
 - 只是片段、不能單獨執行的程式碼，不要加標題
 - 機器人程式使用 WPILib 範本的風格：縮排 2 個空格、用 `System.out.println()`
-- 送出前用 WPILib 附的 JDK 檢查所有完整範例（安裝資料夾見 [安裝 WPILib](../03-setup/install-wpilib.md)）。最後一個參數是用來編譯機器人程式的專案，要先加好 REVLib 和 Phoenix 6，並在有網路時編譯過一次：
+- 送出前用 WPILib 附的 JDK 檢查所有完整範例（安裝資料夾見 [安裝 WPILib](../03-setup/install-wpilib.md)）。最後一個參數是用來編譯機器人程式的專案（用 Command v2 Robot 範本建立），要先加好 REVLib、Phoenix 6、PathplannerLib、LimelightLib，並在有網路時編譯過一次：
 
 ```bash
 python3 tools/check_java.py docs <WPILib 安裝資料夾>/jdk/bin/java /tmp/java-check <機器人專案>
