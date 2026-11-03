@@ -53,12 +53,16 @@
 ## 程式碼範例
 
 - 可以直接執行的完整範例，在程式碼區塊加上檔名標題：`` ```java title="IntakeDemo.java" ``
+- 機器人專案裡的完整檔案，標題寫專案內的路徑：`` ```java title="src/main/java/first/robot/Robot.java" ``
 - 只是片段、不能單獨執行的程式碼，不要加標題
-- 送出前用 WPILib 附的 JDK 檢查所有完整範例都能執行（安裝資料夾見 [安裝 WPILib](../03-setup/install-wpilib.md)）：
+- 機器人程式使用 WPILib 範本的風格：縮排 2 個空格、用 `System.out.println()`
+- 送出前用 WPILib 附的 JDK 檢查所有完整範例（安裝資料夾見 [安裝 WPILib](../03-setup/install-wpilib.md)）。最後一個參數是用來編譯機器人程式的專案，要先加好 REVLib 和 Phoenix 6，並在有網路時編譯過一次：
 
 ```bash
-python3 tools/check_java.py docs <WPILib 安裝資料夾>/jdk/bin/java /tmp/java-check
+python3 tools/check_java.py docs <WPILib 安裝資料夾>/jdk/bin/java /tmp/java-check <機器人專案>
 ```
+
+- 範例用到其他頁面的類別（例如 `RobotContainer` 用到 `Intake`）時，把那些類別的 REV 版本放在 `tools/robot-fixtures/<章節資料夾>/common/`。某一頁需要不同版本時，放在 `tools/robot-fixtures/<章節資料夾>/<頁面檔名>/`，會蓋過 `common/` 的同名檔案
 
 ## 版本說明
 
