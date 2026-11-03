@@ -17,6 +17,10 @@ mkdocs serve
 - 寫作風格請看 [寫作規範](docs/appendix/style-guide.md)
 - 共用的提示段落放在 `includes/`，用 `--8<-- "檔名.md"` 引用
 
+## 檢查
+
+開 Pull request 時，GitHub Actions 會自動建置網站（`mkdocs build --strict`）並執行獨立的 Java 範例。機器人程式範例的檢查方式見 [寫作規範](docs/appendix/style-guide.md#程式碼範例)。
+
 ## 部署
 
 push 到 `main` 後，GitHub Actions 會自動建置並部署到 GitHub Pages。第一次使用前，到 repo 的 **Settings → Pages**，把 **Source** 設成 **GitHub Actions**。

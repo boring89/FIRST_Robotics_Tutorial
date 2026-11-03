@@ -64,6 +64,17 @@ python3 tools/check_java.py docs <WPILib 安裝資料夾>/jdk/bin/java /tmp/java
 
 - 範例用到其他頁面的類別（例如 `RobotContainer` 用到 `Intake`）時，把那些類別的 REV 版本放在 `tools/robot-fixtures/<章節資料夾>/common/`。某一頁需要不同版本時，放在 `tools/robot-fixtures/<章節資料夾>/<頁面檔名>/`，會蓋過 `common/` 的同名檔案
 
+## 自動檢查
+
+每個 Pull request 都會在 GitHub Actions 上自動執行兩項檢查（`.github/workflows/check.yml`），沒通過時 PR 上會顯示紅色的 ✗：
+
+| 檢查 | 內容 |
+| --- | --- |
+| **Build site** | `mkdocs build --strict`：壞掉的連結、找不到的錨點、格式錯誤都會失敗 |
+| **Run Java examples** | 用 Java 25 執行所有標了檔名的獨立範例（例如第 1 章的 `Hello.java`） |
+
+機器人專案的範例（標題是 `src/main/java/...` 的程式碼）需要 WPILib 2027 的開發環境，CI 上會跳過，送出前請在自己的電腦上用上面的指令檢查。
+
 ## 版本說明
 
 內容和 2027 alpha 的 API 或硬體規格有關的頁面，在標題下方加上：
