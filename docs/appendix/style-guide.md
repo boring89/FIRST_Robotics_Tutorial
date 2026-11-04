@@ -50,6 +50,44 @@
     CTRE 的內容
 ```
 
+## 照片
+
+硬體章節的照片放在 `docs/assets/photos/`，用 JPG。
+
+- **自己拍，或用開放授權的圖**：網路圖片只能用 CC BY、CC BY-SA、CC0、公有領域的，例如 [WPILib 文件](https://github.com/wpilibsuite/frc-docs)（CC BY 4.0）和 [Wikimedia Commons](https://commons.wikimedia.org/)。廠商網站的圖、CC BY-NC-ND（例如 CTRE 的文件）都不能用。**附上來源不代表可以用**，要先確認授權
+- **圖片來源**：用了網路圖片，要在那一章「延伸學習」最後的**圖片來源**表格寫出原始檔案、作者、授權、做了什麼修改。之後換成自己拍的照片時，記得把那一列刪掉
+- **人物**：照片裡有隊員的臉，要先問過本人（未成年要家長同意）；拍硬體時盡量不要拍到人
+- **格式**：JPG、橫式 3:2、長邊 1600 px 左右、一張不超過 400 KB
+- **拍法**：背景乾淨、光線充足，主角放在畫面中間，說明文字提到的東西都要看得到
+
+在頁面裡放照片的寫法：
+
+```markdown
+<figure markdown="span">
+  ![裝在機器人上的 Limelight](../assets/photos/limelight-mounted.jpg){ loading=lazy }
+  <figcaption>照片下方的說明</figcaption>
+</figure>
+```
+
+### 還沒有照片的地方
+
+這些地方找不到開放授權的圖，需要隊上自己拍：
+
+| 頁面 | 放在哪一段 | 要拍什麼 |
+| --- | --- | --- |
+| [第 2 章 FRC 基本元件認識](../02-hardware/index.md) | 控制系統全貌 | 電控板俯視全景：電池、主斷路器、Systemcore、Motioncore、馬達控制器 |
+| [電源與 Motioncore](../02-hardware/power.md) | Motioncore | 接好線的 Motioncore，看得到 Device port |
+| [感測器](../02-hardware/sensors.md) | Encoder（REV 分頁） | REV Through Bore Encoder |
+| [Driver Station 與手把](../02-hardware/driver-station.md) | Driver Station | 駕駛站：筆電和手把 |
+| [韌體與 CAN 設定](../03-setup/firmware-can.md) | 更新韌體、設定 CAN ID | 貼了 CAN ID 標籤的馬達控制器 |
+| [第 4 章 機器人程式基礎](../04-robot-basics/index.md) | 需要的硬體 | 測試板：Systemcore 和一組馬達固定在板子上 |
+| [編碼器](../06-motors-sensors/encoders.md) | Absolute encoder | 裝在手臂轉軸上的絕對式編碼器 |
+| [陀螺儀與 IMU](../06-motors-sensors/gyro.md) | 內建 IMU 的安裝方向 | 裝在機器人上的 Systemcore，看得出安裝方向 |
+| [數位感測器](../06-motors-sensors/digital-sensors.md) | 用極限開關保護機構 | 裝在升降機構或手臂底部的極限開關 |
+| [差速底盤](../07-drivetrain/differential.md) | 差速底盤怎麼動 | 差速底盤翻過來的底部：左右兩邊的輪子和馬達 |
+| [第 10 章 視覺](../10-vision/index.md) | 視覺的硬體 | Limelight 相機 |
+| [Limelight 與 PhotonVision](../10-vision/limelight-photonvision.md) | 設定 Limelight | 裝在機器人上的 Limelight，看得出安裝位置和角度 |
+
 ## 程式碼範例
 
 - 可以直接執行的完整範例，在程式碼區塊加上檔名標題：`` ```java title="IntakeDemo.java" ``

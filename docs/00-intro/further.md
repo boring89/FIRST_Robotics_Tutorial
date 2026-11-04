@@ -30,3 +30,11 @@
 - 駕駛在手動階段有哪些動作是「一個按鈕」自動完成的？
 
 這些都是程式組的工作。看完影片，你會更清楚之後要學的東西會用在哪裡。
+
+## 圖片來源
+
+這一章用到的網路圖片，依照各自的授權條款使用。
+
+| 圖片 | 原始檔案 | 作者 | 授權 | 修改 |
+| --- | --- | --- | --- | --- |
+| [FRC 9450 隊的機器人](index.md#frc-是什麼) | [FRC 9450 robot holding note.jpg](https://commons.wikimedia.org/wiki/File:FRC_9450_robot_holding_note.jpg) | Dmhll | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 無 |

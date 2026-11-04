@@ -1,0 +1,5 @@
+/* 硬體照片：不要撐滿整個版面 */
+.md-typeset figure img {
+  max-width: min(100%, 36rem);
+  border-radius: 0.2rem;
+}

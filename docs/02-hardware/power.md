@@ -18,6 +18,11 @@ FRC 機器人的電全部來自一顆 **12V 鉛酸電池**。電池的電會依�
 2. **Power distribution（配電）**：把一路電分成很多路，每一路都有自己的 **Circuit breaker（斷路器）** 或保險絲，分別供電給各個元件。
 3. **各個元件**：主控制器、馬達控制器、感測器等等。
 
+<figure markdown="span">
+  ![12V 鉛酸電池和 120A 主斷路器](../assets/photos/battery-breaker.jpg){ loading=lazy }
+  <figcaption>左：12V 鉛酸電池。右：120A 主斷路器，按下紅色按鈕就會斷電，是整台機器人的電源開關</figcaption>
+</figure>
+
 !!! warning "注意：電流很大"
     FRC 機器人的馬達在卡住時，一顆就可能吃到上百安培的電流。斷路器是為了保護電線不會因為過熱而燒起來，**絕對不要用更大的斷路器取代原本的規格**。
 

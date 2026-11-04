@@ -44,6 +44,11 @@
 
     - **CANcoder**：直接接在 CAN 上的絕對式編碼器，常用在 Swerve 轉向模組
 
+    <figure markdown="span">
+      ![CANcoder，狀態燈用紅圈標出](../assets/photos/ctre-cancoder.jpg){ loading=lazy }
+      <figcaption>CANcoder，紅圈是狀態燈。它讀取裝在轉軸末端的磁鐵的角度</figcaption>
+    </figure>
+
 Motioncore 上也有 3 個 quadrature（正交）編碼器埠，可以接外接編碼器做里程計。
 
 ### Gyro / IMU（陀螺儀 / 慣性測量單元）
@@ -59,6 +64,11 @@ IMU 量測機器人的**轉向和加速度**。最常用到的是 **Heading（�
 
 - 極限開關：手臂轉到底時觸發，程式就讓馬達停下，避免機構撞壞
 - 光遮斷感測器：遊戲物件擋住光線時觸發，程式就知道「拿到東西了」
+
+<figure markdown="span">
+  ![一個有拉桿的微動開關](../assets/photos/digital-sensors.jpg){ loading=lazy }
+  <figcaption>常見的極限開關：有拉桿的微動開關，拉桿被壓下時觸發</figcaption>
+</figure>
 
 !!! warning "注意：alpha 與 beta 版 Systemcore 的接法不同"
     alpha 版 Systemcore 的 IO 腳位內建下拉電阻 (pull-down)，極限開關要接在訊號腳和 +3.3V 之間；beta 版改成上拉電阻 (pull-up)，和 roboRIO 一樣。手上的是哪一版，接線前要先確認。

@@ -42,3 +42,11 @@ LimelightLib 會根據看到的 AprilTag 數量和距離算出標準差。如果
 - [Limelight 官方文件](https://docs.limelightvision.io/)：Pipeline 設定、MegaTag、物件偵測的詳細說明
 - [PhotonVision 官方文件](https://docs.photonvision.org/)：協同處理器的安裝、相機校正
 - [WPILib 文件：Pose Estimators](https://docs.wpilib.org/en/latest/docs/software/advanced-controls/state-space/state-space-pose-estimators.html)：Pose estimator 的原理
+
+## 圖片來源
+
+這一章用到的網路圖片，依照各自的授權條款使用。
+
+| 圖片 | 原始檔案 | 作者 | 授權 | 修改 |
+| --- | --- | --- | --- | --- |
+| [AprilTag](apriltag.md#apriltag) | [apriltagrobots_overlay.jpg](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/software/vision-processing/apriltag/images/apriltagrobots_overlay.jpg) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 無 |
