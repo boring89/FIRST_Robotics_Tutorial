@@ -71,7 +71,7 @@ stateDiagram-v2
 
 在 Command-based 裡，每個狀態可以對應到一個 Command，狀態之間的轉換就是 Trigger。這一章寫的 Intake 和 Shooter，其實就是上面這個狀態機。先畫出狀態圖再寫程式，可以幫你發現漏掉的情況，例如「Holding 狀態下又按了 faceDown 要怎麼辦？」。
 
-WPILib 2027 的 Commands v3 也提供了宣告式的狀態機 API (`StateMachine`)，有興趣可以查看 v3 的 API 文件。
+WPILib 2027 的 Commands v3 也提供了宣告式的狀態機 API (`StateMachine`)，有興趣可以查看 v3 的 API 文件。[第 19 章](../19-superstructure/index.md) 會用狀態機協調 Intake、Arm、Shooter 三個機構。
 
 ## 進一步閱讀
 

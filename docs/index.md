@@ -51,6 +51,7 @@
 | [第 16 章 Swerve 自動階段](16-swerve-auto/index.md) | Odometry、PathPlanner、視覺修正位置 |
 | [第 17 章 Swerve 進階](17-swerve-advanced/index.md) | 254 的 Setpoint Generator、加速度 Feedforward、保持朝向 |
 | [第 18 章 硬體抽象化與 AdvantageKit](18-hardware-abstraction/index.md) | `ModuleIO` 架構、AdvantageKit、Log replay |
+| [第 19 章 Superstructure 與狀態機](19-superstructure/index.md) | 協調 Intake、Arm、Shooter，用 JUnit 測試狀態機 |
 
 每一章最後都有一節 **延伸學習**，放進階主題和外部資源，第一次讀可以先跳過。
 

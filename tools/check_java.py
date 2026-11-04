@@ -6,8 +6,8 @@ Usage:
 A block titled with a bare file name (```java title="Hello.java") is run with
 `java Hello.java`. A block titled with a path inside a robot project
 (```java title="src/main/java/first/robot/Robot.java") is copied into a fresh
-copy of ROBOT_PROJECT and compiled with Gradle; these are skipped when no
-ROBOT_PROJECT is given. The project must already have the vendordeps the
+copy of ROBOT_PROJECT and compiled with Gradle; a block under src/test/ is
+run as a JUnit test instead. These are skipped when no ROBOT_PROJECT is given. The project must already have the vendordeps the
 examples use, and must have been built once online so Gradle can run offline.
 
 Before each block, tools/robot-fixtures/<chapter>/common/ and then
@@ -53,9 +53,12 @@ def build_robot(md, name, src_text):
     for fixtures in (chapter / "common", chapter / md.stem):
         if fixtures.is_dir():
             shutil.copytree(fixtures, d, dirs_exist_ok=True)
+    (d / name).parent.mkdir(parents=True, exist_ok=True)
     (d / name).write_text(src_text, encoding="utf-8")
     env = dict(os.environ, JAVA_HOME=java_home)
-    return subprocess.run(["./gradlew", "build", "-x", "test", "--offline", "-q"],
+    # A JUnit test (src/test/...) is run; anything else is only compiled.
+    task = ["test"] if name.startswith("src/test/") else ["build", "-x", "test"]
+    return subprocess.run(["./gradlew", *task, "--offline", "-q"],
                           capture_output=True, text=True, timeout=600, cwd=d, env=env)
 
 
