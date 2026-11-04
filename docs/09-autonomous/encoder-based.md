@@ -112,3 +112,35 @@ public final class Autos {
 1. 寫一個自動程式：往前走 2 公尺、向左轉到 90 度、再往前走 1 公尺。用捲尺量量看，機器人最後停在哪裡，和預期差多少？
 2. 修改 `driveDistanceCommand`，加上逾時保護：最多執行 5 秒。為什麼自動程式的每個步驟都應該有逾時保護？
 3. 在 `autoChooser` 加入 `shootThenBackUp` 和 `shootAndPickUp`。
+
+??? question "第 1 題參考答案"
+    ```java
+    public static Command driveTurnDrive(Drivetrain drivetrain) {
+      return drivetrain.driveDistanceCommand(2.0)
+          .andThen(new TurnToAngle(drivetrain, 90))
+          .andThen(drivetrain.driveDistanceCommand(1.0))
+          .withName("DriveTurnDrive");
+    }
+    ```
+
+    理想上機器人會停在起點往前 2 公尺、再往左 1 公尺的地方。實際上通常會差幾公分到十幾公分：急停時多滑了一段、轉彎時輪子打滑、轉向沒有剛好停在 90 度。
+
+??? question "第 2 題參考答案"
+    在 `.until(...)` 後面加上 `.withTimeout(5.0)`：
+
+    ```java
+    return runOnce(() -> startDistance = getDistanceMeters())
+        .andThen(run(() -> arcadeDrive(0.4 * direction, 0.0)))
+        .until(() -> Math.abs(getDistanceMeters() - startDistance) >= Math.abs(meters))
+        .withTimeout(5.0)
+        .finallyDo(() -> arcadeDrive(0.0, 0.0))
+        .withName("DriveDistance");
+    ```
+
+    如果被其他機器人擋住、或是編碼器斷線讀不到距離，「走夠距離」的條件永遠不會成立，機器人會卡在這一步，把整個自動階段浪費掉。有逾時保護，最慘也只會浪費 5 秒，後面的步驟還能繼續。
+
+??? question "第 3 題參考答案"
+    ```java
+    autoChooser.add("發射後後退", Autos.shootThenBackUp(drivetrain, intake, shooter));
+    autoChooser.add("發射並撿下一個", Autos.shootAndPickUp(drivetrain, intake, shooter));
+    ```

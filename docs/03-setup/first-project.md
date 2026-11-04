@@ -134,3 +134,6 @@ BUILD SUCCESSFUL
 2. 打開 `.wpilib/wpilib_preferences.json`，找到你設定的隊號。
 3. 打開 `Constants.java`，找到手把的編號常數。它的命名符合 [變數與型別](../01-java/variables.md) 講的常數命名慣例嗎？
 4. 依照隊上使用的馬達，加入 REVLib 或 Phoenix 6，再編譯一次。
+
+??? question "第 3 題參考答案"
+    `OperatorConstants.DRIVER_CONTROLLER_PORT`。它是 `static final` 的常數，名稱全大寫、用底線分隔，符合常數的命名慣例。

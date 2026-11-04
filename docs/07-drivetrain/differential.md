@@ -300,3 +300,22 @@ drivetrain.setDefaultCommand(
 1. 照著範例寫出 Drivetrain，架高測試每個輪子的方向。
 2. 改成 Tank drive：寫一個 `tankDriveCommand(DoubleSupplier left, DoubleSupplier right)`，讓駕駛試試兩種操控方式，問問看他們喜歡哪一種。
 3. 推著機器人往前走 1 公尺（用捲尺量），看 `Drivetrain/DistanceMeters` 是不是接近 1。差很多的話，檢查齒輪比和輪子直徑。
+
+??? question "第 2 題參考答案"
+    在 `Drivetrain` 加上：
+
+    ```java
+    public Command tankDriveCommand(DoubleSupplier left, DoubleSupplier right) {
+      return run(() -> drive.tankDrive(left.getAsDouble(), right.getAsDouble()))
+          .withName("TankDrive");
+    }
+    ```
+
+    在 `RobotContainer` 把 default command 換成：
+
+    ```java
+    drivetrain.setDefaultCommand(
+        drivetrain.tankDriveCommand(() -> -driver.getLeftY(), () -> -driver.getRightY()));
+    ```
+
+    兩邊都要加負號，因為搖桿往前推是負值。

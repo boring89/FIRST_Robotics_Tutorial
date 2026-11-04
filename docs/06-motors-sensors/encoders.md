@@ -393,3 +393,37 @@ arm.setDefaultCommand(arm.manualCommand(() -> -driver.getRightY() * 0.3));
 1. 在 Elastic 上觀察 `Shooter/RPM`，從按下發射到 `Shooter/AtSpeed` 變成 `true` 大約要多久？
 2. 先把 `ABSOLUTE_OFFSET_ROTATIONS` 設成 0，把手臂放在收起的位置，記下這時候的讀值，算出正確的 `ABSOLUTE_OFFSET_ROTATIONS`（注意 REV 和 CTRE 的正負號不同，而且 offset 的單位是圈，不是度）。再用量角器量出收起時手臂和水平的夾角，填入 `STOWED_ANGLE_DEGREES`，確認手臂水平時 `Arm/AngleDegrees` 接近 0。
 3. 在 `Intake` 加上 `getRpm()`，並用 Telemetry 顯示。Intake 卡住時轉速會有什麼變化？可以拿來做什麼？
+
+??? question "第 2 題參考答案"
+    例如把手臂放在收起的位置時：
+
+    | 廠商 | 讀到的值 | 要填的 `ABSOLUTE_OFFSET_ROTATIONS` |
+    | --- | --- | --- |
+    | REV（Through Bore，範圍 0～1） | 0.37 | **0.37**（`zeroOffset` 填「要當作 0 的位置」） |
+    | CTRE（CANcoder，範圍 -0.5～0.5） | 0.12 | **-0.12**（`MagnetOffset` 是加到讀值上的數） |
+
+    填好後重新部署，收起時讀值應該接近 0。再用量角器量出收起時手臂和水平的夾角（例如手臂比水平低 30 度），填入 `STOWED_ANGLE_DEGREES = -30.0`。最後把手臂擺到水平，確認 `Arm/AngleDegrees` 接近 0。
+
+??? question "第 3 題參考答案"
+    === "REV"
+
+        ```java
+        public double getRpm() {
+          return motor.getEncoder().getVelocity().get(0.0);
+        }
+        ```
+
+    === "CTRE"
+
+        ```java
+        public double getRpm() {
+          return motor.getVelocity().getValueAsDouble() * 60.0;
+        }
+        ```
+
+    在 `periodic()` 加上 `Telemetry.log("Intake/RPM", getRpm());`。
+
+    Intake 卡住時，馬達有輸出但**轉速會突然掉很多**（甚至接近 0），電流也會變大。可以拿來：
+
+    - **偵測卡住**：轉速太低超過一段時間，就自動吐出來再重新吸
+    - **偵測拿到物件**：有些 Intake 拿到物件時轉速會明顯下降，可以當作備用的感測方式

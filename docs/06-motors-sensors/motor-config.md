@@ -166,3 +166,33 @@ public static final int CURRENT_LIMIT = 40;
 1. 幫第 5 章的 Intake 加上設定：Brake 模式、30 A 電流限制。
 2. 用 REV Hardware Client 2 或 Phoenix Tuner X 確認設定真的有寫進控制器。
 3. 把 Intake 改成 Coast 模式，比較吸入停止時遊戲物件的行為有什麼不同。
+
+??? question "第 1 題參考答案"
+    在 `Intake` 的建構子裡加上設定：
+
+    === "REV"
+
+        ```java
+        public Intake() {
+          SparkMaxConfig config = new SparkMaxConfig();
+          config.idleMode(IdleMode.kBrake).smartCurrentLimit(30);
+          motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        }
+        ```
+
+    === "CTRE"
+
+        ```java
+        public Intake() {
+          TalonFXConfiguration config = new TalonFXConfiguration();
+          config.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+          config.CurrentLimits.StatorCurrentLimit = 30;
+          config.CurrentLimits.StatorCurrentLimitEnable = true;
+          motor.getConfigurator().apply(config);
+        }
+        ```
+
+    30 也可以放進 `IntakeConstants`，例如 `CURRENT_LIMIT = 30`。
+
+??? question "第 3 題參考答案"
+    Coast 模式下，馬達停止後滾輪還會繼續轉一下，遊戲物件可能被**多吸進去一點**，或是在 Intake 裡滑動。Brake 模式會讓滾輪很快停下，物件停在感測器觸發的位置附近，比較容易控制。

@@ -137,3 +137,8 @@ sequenceDiagram
 1. 想想你們隊上的機器人（或去年的機器人），列出它有哪些 Subsystem。
 2. 為每個 Subsystem 列出 2～3 個 Command，並寫下每個 Command 需要哪些 Subsystem。
 3. 有沒有哪個 Command 同時需要兩個以上的 Subsystem？它跟其他 Command 可能會有什麼衝突？
+
+??? question "第 3 題參考答案"
+    以這一章的機器人為例：「發射」同時需要 **Intake 和 Shooter**。發射到一半時，如果駕駛按了需要 Intake 的「吸入」，吸入會中斷整個發射，Shooter 也跟著停下來。
+
+    設計 Command 時要想清楚它真正需要哪些 Subsystem，不要多佔用不需要的 Subsystem，否則它會被不相干的操作中斷，或擋住其他 Command。

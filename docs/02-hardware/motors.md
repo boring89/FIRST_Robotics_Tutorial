@@ -118,3 +118,21 @@ FRC 最常見的兩家廠商是 **REV Robotics** 和 **CTR Electronics (CTRE)**�
 
 1. 為什麼 CTRE 的 Kraken X60 只需要接一條 CAN 線，REV 的 NEO 卻要先接到 SPARK MAX？
 2. 為下面這台機器人做一份 CAN 表：4 顆 Kraken X60 底盤馬達、1 顆 NEO Vortex 發射器、2 顆 NEO 550 Intake。
+
+??? question "第 1 題參考答案"
+    Kraken X60 的馬達控制器（Talon FX）**內建在馬達裡**，所以一顆 Kraken 就是一個 CAN 裝置。NEO 只是馬達，本身沒有控制器，要先接到 SPARK MAX 這個外部控制器，再由 SPARK MAX 接上 CAN。
+
+??? question "第 2 題參考答案"
+    其中一種規劃方式（ID 範圍可以照隊上的規則調整，見[第 3 章](../03-setup/firmware-can.md#can-id-的規劃)）：
+
+    | 機構 | 裝置 | 匯流排 | CAN ID |
+    | --- | --- | --- | --- |
+    | 底盤左前 | Kraken X60 | `can_s0` | 1 |
+    | 底盤左後 | Kraken X60 | `can_s0` | 2 |
+    | 底盤右前 | Kraken X60 | `can_s0` | 3 |
+    | 底盤右後 | Kraken X60 | `can_s0` | 4 |
+    | 發射器 | NEO Vortex + SPARK Flex | `can_s1` | 20 |
+    | Intake 上 | NEO 550 + SPARK MAX | `can_s1` | 10 |
+    | Intake 下 | NEO 550 + SPARK MAX | `can_s1` | 11 |
+
+    底盤放在一條匯流排、其他機構放在另一條，一條線出問題時不會整台機器人都停擺。

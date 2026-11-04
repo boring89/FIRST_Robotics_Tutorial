@@ -87,3 +87,20 @@ autoChooser.add("發射後後退", Autos.shootThenBackUpTimed(drivetrain, intake
 1. 把 `Autos.java` 和選單加進你的專案，在 Elastic 上選擇自動程式，用 Driver Station 切換到 Autonomous 測試。
 2. 寫一個自動程式：往前開 1 秒，原地向左轉 0.5 秒，再往前開 1 秒。電池充飽和電量較低時，結果有什麼不同？
 3. 在 `autoChooser` 加一個「只發射」的選項。
+
+??? question "第 2 題參考答案"
+    ```java
+    public static Command driveTurnDriveTimed(Drivetrain drivetrain) {
+      return drivetrain.arcadeDriveCommand(() -> 0.4, () -> 0.0).withTimeout(1.0)
+          .andThen(drivetrain.arcadeDriveCommand(() -> 0.0, () -> 0.4).withTimeout(0.5))
+          .andThen(drivetrain.arcadeDriveCommand(() -> 0.4, () -> 0.0).withTimeout(1.0))
+          .withName("DriveTurnDriveTimed");
+    }
+    ```
+
+    電量低時馬達比較慢：兩段直線都**走得比較短**，轉彎的**角度也比較小**，最後停的位置會差很多。這就是為什麼要改用[編碼器](encoder-based.md)和 IMU。
+
+??? question "第 3 題參考答案"
+    ```java
+    autoChooser.add("只發射", ScoringCommands.shoot(intake, shooter));
+    ```

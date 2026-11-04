@@ -194,3 +194,21 @@ public final class ScoringCommands {
           .withName("IntakeThenShoot");
     }
     ```
+
+??? question "第 2 題參考答案"
+    ```java
+    public static Command shoot(Intake intake, Shooter shooter) {
+      return Commands.waitSeconds(ShooterConstants.SPIN_UP_SECONDS)
+          .andThen(intake.feedCommand().withTimeout(ShooterConstants.FEED_SECONDS))
+          .deadlineFor(shooter.spinCommand())
+          .unless(() -> !intake.hasGamePiece())
+          .withName("Shoot");
+    }
+    ```
+
+    `unless` 在 Command **開始的那一刻**檢查條件：條件成立就直接結束，不會執行。
+
+??? question "第 3 題參考答案"
+    缺點：轉 1 秒後的轉速會隨著**電池電量**、飛輪的磨損而改變，電量低時轉速不夠，遊戲物件就打不遠。另外如果轉速其實 0.6 秒就到了，剩下的 0.4 秒都是浪費。
+
+    有編碼器的話，改成「**等到轉速夠快**再送料」：把 `Commands.waitSeconds(...)` 換成 `Commands.waitUntil(shooter::isAtSpeed)`，再加上逾時保護。[第 6 章](../06-motors-sensors/encoders.md#shooter轉速夠快才發射)就是這樣改的。

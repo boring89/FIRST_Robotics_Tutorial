@@ -161,6 +161,37 @@ gamepad.setLeftYDeadband(0.05);
 2. 改成用右板機控制馬達正轉、左板機控制反轉。（提示：`getRightTrigger() - getLeftTrigger()`）
 3. 加一個「按一下切換」的功能：按一下 `faceRight` 讓馬達以 0.3 持續轉動，再按一下停止。
 
+??? question "第 2 題參考答案"
+    板機的範圍是 0.0～1.0，右板機減左板機，就得到 -1.0～1.0：右板機按越深正轉越快，左板機按越深反轉越快。以 REV 為例：
+
+    ```java title="src/main/java/first/robot/Robot.java"
+    package first.robot;
+
+    import com.revrobotics.spark.SparkLowLevel.MotorType;
+    import com.revrobotics.spark.SparkMax;
+    import org.wpilib.driverstation.Gamepad;
+    import org.wpilib.framework.TimedRobot;
+    import org.wpilib.hardware.bus.CANPort;
+
+    public class Robot extends TimedRobot {
+      private static final double MAX_THROTTLE = 0.5;
+
+      private final SparkMax motor = new SparkMax(CANPort.CAN_S0, 10, MotorType.kBrushless);
+      private final Gamepad gamepad = new Gamepad(0);
+
+      @Override
+      public void teleopPeriodic() {
+        double throttle = gamepad.getRightTrigger() - gamepad.getLeftTrigger();
+        motor.setThrottle(throttle * MAX_THROTTLE);
+      }
+
+      @Override
+      public void disabledInit() {
+        motor.stopMotor();
+      }
+    }
+    ```
+
 ??? question "第 3 題參考答案"
     ```java
     private boolean spinning = false;

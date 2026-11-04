@@ -105,3 +105,12 @@ Systemcore 有 5 條 CAN 匯流排，Motioncore 有 20 個 Device port，所以�
 1. 為隊上的機器人訂一套 CAN ID 規則，寫成表格。
 2. 把 [馬達與馬達控制器](../02-hardware/motors.md) 小練習裡做的 CAN 表，加上「程式裡的寫法」一欄（例如 `CANPort.CAN_S0`）。
 3. 如果有實體裝置，用 RHC2 或 Tuner X 查出它目前的韌體版本和 CAN ID。
+
+??? question "第 2 題參考答案"
+    延續[第 2 章小練習的 CAN 表](../02-hardware/motors.md#小練習)：
+
+    | 機構 | 匯流排 | CAN ID | 程式裡的寫法 |
+    | --- | --- | --- | --- |
+    | 底盤（Kraken X60 × 4） | `can_s0` | 1～4 | `new TalonFX(1, new CANBus(CANPort.CAN_S0))` |
+    | 發射器（SPARK Flex） | `can_s1` | 20 | `new SparkFlex(CANPort.CAN_S1, 20, MotorType.kBrushless)` |
+    | Intake（SPARK MAX × 2） | `can_s1` | 10、11 | `new SparkMax(CANPort.CAN_S1, 10, MotorType.kBrushless)` |

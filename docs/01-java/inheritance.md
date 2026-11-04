@@ -197,5 +197,82 @@ void main() {
 2. 在 `MotorInterface.java` 加入第三種馬達 `FakeMotor`，`set()` 時什麼都不印，只把速度存起來，再加一個 `getLastSpeed()` 方法。這種「假的」馬達在寫測試時很有用。
 3. 想一想：為什麼 `Intake` 的建構子參數型別要寫 `SimpleMotor`，而不是 `RevMotor`？
 
+??? question "第 1 題參考答案"
+    ```java title="ShooterPart.java"
+    class RobotPart {
+        private final String name;
+
+        RobotPart(String name) {
+            this.name = name;
+        }
+
+        String getName() {
+            return name;
+        }
+
+        void periodic() {}
+    }
+
+    class Shooter extends RobotPart {
+        Shooter() {
+            super("Shooter");
+        }
+
+        @Override
+        void periodic() {
+            IO.println(getName() + " 運轉中");
+        }
+    }
+
+    void main() {
+        RobotPart part = new Shooter();
+        part.periodic();   // Shooter 運轉中
+    }
+    ```
+
+    注意 `part` 的型別是 `RobotPart`，但呼叫 `periodic()` 時執行的是 `Shooter` 覆寫的版本。
+
+??? question "第 2 題參考答案"
+    ```java title="FakeMotorDemo.java"
+    interface SimpleMotor {
+        void set(double speed);
+    }
+
+    class FakeMotor implements SimpleMotor {
+        private double lastSpeed = 0.0;
+
+        @Override
+        public void set(double speed) {
+            lastSpeed = speed;   // 不控制任何硬體，只記下來
+        }
+
+        public double getLastSpeed() {
+            return lastSpeed;
+        }
+    }
+
+    class Intake {
+        private final SimpleMotor motor;
+
+        Intake(SimpleMotor motor) {
+            this.motor = motor;
+        }
+
+        void run() {
+            motor.set(0.8);
+        }
+    }
+
+    void main() {
+        FakeMotor fake = new FakeMotor();
+        Intake intake = new Intake(fake);
+
+        intake.run();
+        IO.println("Intake 設定的速度：" + fake.getLastSpeed());   // 0.8
+    }
+    ```
+
+    不用接任何馬達，就能確認 `Intake.run()` 有沒有設定正確的速度。這就是[第 11 章延伸學習](../11-practice/further.md#單元測試)的單元測試在做的事。
+
 ??? question "第 3 題參考答案"
     寫 `SimpleMotor` 的話，任何實作 `SimpleMotor` 的馬達都能傳進來，`Intake` 不必知道是哪一家。如果寫死 `RevMotor`，換成 CTRE 馬達時就得修改 `Intake` 的程式。

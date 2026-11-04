@@ -202,6 +202,30 @@ Intake 吸入
 3. 在 `ButtonDemo.java` 加一個按鍵 `x`，按下時**同時**讓 Intake 停止並印出「全部停止」。
 4. 把下面的 Lambda 改成 method reference：`() -> shooter.spinUp()`。
 
+??? question "第 1 題參考答案"
+    ```java title="RunnableDemo.java"
+    void main() {
+        Runnable fire = () -> IO.println("Shooter 發射");
+        fire.run();
+        fire.run();
+    }
+    ```
+
+??? question "第 2 題參考答案"
+    ```java title="TooHotDemo.java"
+    double temperature = 25.0;   // 欄位：Lambda 執行時讀到的是最新的值
+
+    void main() {
+        BooleanSupplier isTooHot = () -> temperature > 80;
+
+        IO.println(isTooHot.getAsBoolean());   // false
+        temperature = 85.0;
+        IO.println(isTooHot.getAsBoolean());   // true
+    }
+    ```
+
+    `temperature` 改變之後，同一個 `isTooHot` 回傳的結果也跟著變，因為 Lambda 每次被呼叫時才去讀 `temperature`。
+
 ??? question "第 3、4 題參考答案"
     第 3 題：
 

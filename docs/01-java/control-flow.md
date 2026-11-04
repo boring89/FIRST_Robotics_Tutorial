@@ -161,6 +161,32 @@ void main() {
 2. 用 `for` 迴圈印出 CAN ID 1 到 8。
 3. 有一個手臂，角度小於 0 或大於 120 都是危險的。寫一個條件判斷，危險時印出「停止！」。
 
+??? question "第 1 題參考答案"
+    ```java title="IntakeStatus.java"
+    void main() {
+        boolean hasGamePiece = true;
+
+        if (hasGamePiece) {
+            IO.println("Intake 停止");
+        } else {
+            IO.println("Intake 吸入中");
+        }
+    }
+    ```
+
+    把 `hasGamePiece` 改成 `false` 再執行一次，確認兩種情況都對。
+
+??? question "第 2 題參考答案"
+    ```java title="CanIds.java"
+    void main() {
+        for (int id = 1; id <= 8; id++) {
+            IO.println("CAN ID " + id);
+        }
+    }
+    ```
+
+    注意條件是 `id <= 8`（小於**等於**），寫成 `id < 8` 只會印到 7。
+
 ??? question "第 3 題參考答案"
     ```java
     if (armAngle < 0 || armAngle > 120) {

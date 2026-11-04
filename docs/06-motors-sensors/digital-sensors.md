@@ -257,3 +257,41 @@ public void setThrottle(double throttle) {
 1. 在 Elastic 上觀察 `Arm/AtBottom`，用手按下極限開關，確認 `isAtBottom()` 的方向正確。
 2. 手臂碰到底部時，把手臂的相對式編碼器歸零。（提示：在 `periodic()` 裡檢查 `isAtBottom()`）想一想：既然已經有絕對式編碼器了，什麼情況下還需要這樣做？
 3. 加上**軟體限位**：手臂角度超過 110 度時，不允許再往上。
+
+??? question "第 2 題參考答案"
+    在 `periodic()` 裡加上：
+
+    === "REV"
+
+        ```java
+        if (isAtBottom()) {
+          motor.getEncoder().setPosition(0);
+        }
+        ```
+
+    === "CTRE"
+
+        ```java
+        if (isAtBottom()) {
+          motor.setPosition(0);
+        }
+        ```
+
+    有絕對式編碼器的手臂其實不太需要這樣做。這個技巧（叫做 **Homing（歸零）**）主要用在**只有相對式編碼器**的機構，例如升降機構只有馬達內建的編碼器時：開機後先讓機構慢慢往下，碰到極限開關就把編碼器歸零，之後的位置才準。
+
+??? question "第 3 題參考答案"
+    在 `ArmConstants` 加上 `MAX_ANGLE_DEGREES = 110.0`，修改 `setThrottle()`：
+
+    ```java
+    public void setThrottle(double throttle) {
+      if (isAtBottom() && throttle < 0) {
+        throttle = 0;
+      }
+      if (getAngleDegrees() >= ArmConstants.MAX_ANGLE_DEGREES && throttle > 0) {
+        throttle = 0;   // 已經到最高點，不能再往上
+      }
+      motor.setThrottle(throttle);
+    }
+    ```
+
+    和極限開關一樣，只擋住會讓情況更糟的方向（往上），往下還是可以動。

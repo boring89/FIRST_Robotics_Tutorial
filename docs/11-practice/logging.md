@@ -165,3 +165,35 @@ public void periodic() {
 1. 在 `Robot.java` 加上 `DataLogManager.start()`，開幾分鐘的車，下載 log，在 AdvantageScope 的 2D Field 上回放機器人走過的路線。
 2. 在 Line Graph 同時顯示 `Shooter/RPM` 和電池電壓，觀察發射時電壓的變化。
 3. 為 Shooter 加一個 Alert：如果 Shooter 已經轉了 3 秒還沒到達目標轉速，顯示「Shooter 轉速不足」。
+
+??? question "第 3 題參考答案"
+    記下 Shooter 開始轉的時間，在 `periodic()` 裡檢查（以[第 8 章](../08-control/feedforward.md#範例) REV 版的 Shooter 為例）：
+
+    ```java
+    private final Alert slowSpinUpAlert =
+        new Alert("shooterSlowSpinUp", "Shooter 轉速不足", Alert.Level.MEDIUM);
+    private double spinStartTime = -1;   // -1 代表沒在轉
+
+    public Command spinCommand() {
+      return startEnd(
+              () -> {
+                spinStartTime = Timer.getTimestamp();
+                controller.setSetpoint(ShooterConstants.TARGET_RPM, ControlType.kVelocity);
+              },
+              () -> {
+                spinStartTime = -1;
+                motor.stopMotor();
+              })
+          .withName("Spin");
+    }
+
+    @Override
+    public void periodic() {
+      boolean spinning = spinStartTime >= 0;
+      boolean tooSlow = spinning && Timer.getTimestamp() - spinStartTime > 3.0 && !isAtSpeed();
+      slowSpinUpAlert.set(tooSlow);
+      // ...原本的 Telemetry...
+    }
+    ```
+
+    `Timer.getTimestamp()` 回傳機器人程式啟動後經過的秒數。轉速一到，或 Shooter 停下來，Alert 就會消失。
