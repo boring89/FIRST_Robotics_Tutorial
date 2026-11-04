@@ -2,7 +2,7 @@
 
 --8<-- "alpha-warning.md"
 
-[第 7 章的 Swerve 入門](../07-drivetrain/swerve.md) 建議第一次做 Swerve 時用現成的方案。這一章到第 17 章反過來：**不用任何 Swerve 函式庫，自己從頭寫一套 Swerve**。寫過一次，你會真正理解現成方案裡每一個參數在做什麼，出問題時也知道從哪裡查起。
+[第 7 章的 Swerve 入門](../07-drivetrain/swerve.md) 建議第一次做 Swerve 時用現成的方案。這一章到第 18 章反過來：**不用任何 Swerve 函式庫，自己從頭寫一套 Swerve**。寫過一次，你會真正理解現成方案裡每一個參數在做什麼，出問題時也知道從哪裡查起。
 
 ## 為什麼要自己寫
 
@@ -35,6 +35,7 @@
 | [第 15 章 模擬](../15-swerve-sim/index.md) | 沒有機器人也能在電腦上測試 Swerve 程式 |
 | [第 16 章 自動階段](../16-swerve-auto/index.md) | Odometry、PathPlanner、視覺修正位置 |
 | [第 17 章 進階](../17-swerve-advanced/index.md) | 254 的 Setpoint Generator、加速度 Feedforward、保持朝向 |
+| [第 18 章 硬體抽象化與 AdvantageKit](../18-hardware-abstraction/index.md) | 硬體和邏輯分開，比賽的 log 可以拿回來重播 |
 
 ## 程式的架構
 

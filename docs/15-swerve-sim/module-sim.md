@@ -179,6 +179,8 @@ syncSteerEncoder();
 
 `條件 ? A : B` 是 Java 的**三元運算子**：條件成立時是 A，否則是 B。`sim` 是 `final`，只能設定一次，所以用這個寫法一次決定它的值。
 
+「真的機器人上是 `null`」的寫法有點彆扭：模擬和真的硬體混在同一個類別裡。[第 18 章](../18-hardware-abstraction/index.md) 會用硬體抽象化把它們乾淨地分開。
+
 加上給 `Drivetrain` 呼叫的方法：
 
 ```java

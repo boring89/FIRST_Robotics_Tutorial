@@ -7,8 +7,11 @@
 | A301 | A301 致動器 | 2027 新的 FIRST 致動器，接在 Motioncore 的 Device port |
 | Absolute encoder | 絕對式編碼器 | 斷電後仍然知道目前角度的編碼器 |
 | Actuator | 致動器 | 會讓機器人動起來的元件，例如馬達、氣壓缸 |
+| AdvantageKit | AdvantageKit | FRC 6328 開發的 log 框架，記錄所有輸入並支援 Log replay |
 | Alert | 警示 | 顯示在 Dashboard 上、提醒駕駛的訊息，例如相機斷線 |
 | Alliance | 聯盟 | 每場比賽的紅、藍兩方，各由 3 支隊伍組成 |
+| Annotation processor | 註解處理器 | 在編譯時根據註解自動產生程式碼的工具，例如 AdvantageKit 的 `@AutoLog` |
+| Anonymous class | 匿名類別 | 當場建立一個實作介面的物件，不另外取名字，例如 `new GyroIO() {}` |
 | AprilTag | AprilTag | 場地上有編號的黑白方塊圖案，相機看到它就能算出位置 |
 | Arbitrary feedforward | 額外前饋 | 自己算好、加在馬達控制器輸出上的電壓，例如手臂的重力補償 |
 | Arcade drive | 單搖桿式操控 | 一個軸控制前進後退、另一個軸控制轉彎的底盤操控方式 |
@@ -36,6 +39,7 @@
 | Default command | 預設指令 | Subsystem 沒有被其他 Command 使用時執行的 Command |
 | Deploy | 部署 | 把編譯好的程式傳到 Systemcore 上執行 |
 | Desaturate | 等比例限速 | Swerve 某個輪子超過最高速度時，四個輪子一起等比例縮小 |
+| Deterministic | 確定的 | 同樣的輸入一定得到同樣的結果，Log replay 需要程式是確定的 |
 | Differential drive | 差速底盤 | 左右兩邊輪子各自控制，靠速度差轉彎的底盤，也叫 Tank drive |
 | Discretize | 離散化 | 考慮每 20 ms 更新一次的影響，修正一邊平移一邊旋轉時的偏移 |
 | Driver perspective | 駕駛視角 | 以駕駛站的方向為準的座標，紅色聯盟的「前方」是場地的 −X |
@@ -50,6 +54,7 @@
 | Follower | 跟隨者 | 自動跟著另一顆馬達（Leader）動作的馬達 |
 | Gain | 增益（參數） | 控制器的參數，例如 kP、kV |
 | Gamepad | 手把 | Xbox、PS4 / PS5 手把等 |
+| Hardware abstraction | 硬體抽象化 | 把和硬體溝通的程式藏在介面後面，邏輯不知道底下是真的硬體、模擬還是重播 |
 | Heading | 朝向 | 機器人面向場地的哪個方向 |
 | Heading lock | 保持朝向 | 駕駛沒有在轉的時候，用 PID 把 Swerve 的朝向鎖住 |
 | Idle mode | 閒置模式 | 馬達輸出為 0 時的行為，分成 Brake 和 Coast |
@@ -60,6 +65,7 @@
 | Kinematics | 運動學 | 機器人整體速度和各個輪子速度之間的換算 |
 | Limit switch | 極限開關 | 機構碰到時觸發的開關，用來限制行程 |
 | Log | 記錄檔 | 機器人執行時記錄下來的資料，事後可以回放 |
+| Log replay | 重播 | 把 log 裡記錄的輸入重新餵給程式，看新的程式會算出什麼 |
 | Magnet offset | 磁鐵偏移（零點） | CANcoder 的零點設定，讓輪子朝前時讀到 0 |
 | MAXMotion | MAXMotion | REV 馬達控制器內建的 Motion Profile 功能 |
 | Mechanism | Mechanism（機構） | Commands v3 裡代表一個機構的物件，對應 v2 的 Subsystem |
@@ -109,6 +115,7 @@
 | Timestamp | 時間戳記 | 資料是在什麼時間點量到的 |
 | Trapezoid profile | 梯形速度曲線 | 先加速、等速巡航、再減速的 Motion Profile |
 | Trigger | Trigger（觸發條件） | 條件成立時啟動 Command，例如按下按鈕 |
+| Twist2d | 位移量 | 一小段時間內，機器人往前、往左移動多少、轉了多少 |
 | tx / ty | 水平 / 垂直角度 | 目標相對於相機畫面中央的角度 |
 | Unit test | 單元測試 | 不需要機器人、自動檢查程式邏輯的測試 |
 | Vendor dependency (vendordep) | 廠商函式庫 | 廠商提供的程式庫，例如 REVLib、Phoenix 6 |

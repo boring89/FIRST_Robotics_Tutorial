@@ -41,6 +41,10 @@ PathPlannerLib 的 `SwerveSetpointGenerator` 改寫自 254 隊 2022 賽季的版
 
 254 大部分賽季結束後，都會在 GitHub 的 **Team254** 組織公開機器人的完整程式碼（例如 FRC-2024-Public、FRC-2025-Public），裡面還有很多值得參考的做法。程式碼很多，可以先從底盤的部分開始看。
 
+## 再往下
+
+[第 18 章 硬體抽象化與 AdvantageKit](../18-hardware-abstraction/index.md) 把這一章的 Swerve 改寫成硬體和邏輯分開的架構，並用 AdvantageKit 重播比賽的 log。
+
 ## 進一步閱讀
 
 - [PathPlanner 文件](https://pathplanner.dev/home.html)：Swerve Setpoint Generator 的用法
