@@ -64,7 +64,7 @@
 [硬體與常數](../13-swerve-drive/hardware.md#估計驅動的-feedforward) 估的 kV ≈ 0.81，實際的值通常會差不多，但 kS 一定要在地上量，因為它是**摩擦力**，架高時和放在地上完全不一樣。
 
 !!! tip "小技巧：用 SysId"
-    [第 8 章的 SysId](../08-control/sysid.md) 可以量出準確的 kS、kV、kA。Swerve 的做法是讓四個輪子都朝前（例如用 X 字鎖定的寫法，但四個角度都是 0），再對驅動馬達跑 SysId。
+    [第 8 章的 SysId](../08-control/sysid.md) 可以量出準確的 kS、kV、kA。Swerve 的做法是讓四個輪子都朝前（例如用 X 字鎖定的寫法，但四個角度都是 0），再對驅動馬達跑 SysId。完整的做法在[第 20 章](../20-swerve-calibration/drive-sysid.md)。
 
 ### 3. 驅動的 P
 
