@@ -29,12 +29,16 @@
 | Commit | 提交 | Git 中存下的一個版本 |
 | Coprocessor | 協同處理器 | 額外的小電腦，通常拿來跑視覺 |
 | Coroutine | 協程 | 可以暫停、之後再繼續執行的程式，Commands v3 用它來寫 Command |
+| Cosine compensation | 餘弦補償 | Swerve 輪子還沒轉到目標方向時，把速度乘上角度誤差的 cos 值 |
 | Current limit | 電流限制 | 限制馬達最多能使用的電流，保護馬達和電池 |
 | Deadband | 死區 | 小於某個值就當作 0，用來忽略搖桿放開時的微小讀值 |
 | Decorator | 修飾 | 加在 Command 後面改變行為的方法，例如 `withTimeout()`、`until()` |
 | Default command | 預設指令 | Subsystem 沒有被其他 Command 使用時執行的 Command |
 | Deploy | 部署 | 把編譯好的程式傳到 Systemcore 上執行 |
+| Desaturate | 等比例限速 | Swerve 某個輪子超過最高速度時，四個輪子一起等比例縮小 |
 | Differential drive | 差速底盤 | 左右兩邊輪子各自控制，靠速度差轉彎的底盤，也叫 Tank drive |
+| Discretize | 離散化 | 考慮每 20 ms 更新一次的影響，修正一邊平移一邊旋轉時的偏移 |
+| Driver perspective | 駕駛視角 | 以駕駛站的方向為準的座標，紅色聯盟的「前方」是場地的 −X |
 | Driver Station | Driver Station（操控站） | 駕駛用來控制機器人的電腦程式 |
 | Encoder | 編碼器 | 量測轉動角度和速度的感測器 |
 | Error | 誤差 | 目標值減去實際值 |
@@ -55,10 +59,12 @@
 | Kinematics | 運動學 | 機器人整體速度和各個輪子速度之間的換算 |
 | Limit switch | 極限開關 | 機構碰到時觸發的開關，用來限制行程 |
 | Log | 記錄檔 | 機器人執行時記錄下來的資料，事後可以回放 |
+| Magnet offset | 磁鐵偏移（零點） | CANcoder 的零點設定，讓輪子朝前時讀到 0 |
 | MAXMotion | MAXMotion | REV 馬達控制器內建的 Motion Profile 功能 |
 | Mechanism | Mechanism（機構） | Commands v3 裡代表一個機構的物件，對應 v2 的 Subsystem |
 | MegaTag | MegaTag | Limelight 用 AprilTag 計算機器人位置的方法，MegaTag2 會用到機器人的朝向 |
 | Merge conflict | 合併衝突 | 兩個人改了同一個地方，Git 無法自動合併 |
+| Moment of inertia | 轉動慣量 | 物體多難被轉動，模擬馬達和 PathPlanner 的設定會用到 |
 | Motion Magic | Motion Magic | CTRE 馬達控制器內建的 Motion Profile 功能 |
 | Motion Profile | 運動曲線 | 事先規劃好每個時間點的位置和速度，讓機構平順地移動 |
 | Motioncore | Motioncore | 2027 的 CAN 與電源分配裝置 |
@@ -67,6 +73,7 @@
 | Named command | 具名指令 | 在 PathPlanner 裡用名字指定、在程式裡註冊的 Command |
 | Object detection | 物件偵測 | 用神經網路辨識畫面中的遊戲物件 |
 | Odometry | 里程計 | 用編碼器和 IMU 累加計算機器人在場上的位置 |
+| Optimize | 最佳化 | Swerve 輪子要轉超過 90 度時，改成反方向轉、輪子倒著滾 |
 | Oscillation | 震盪 | 機構在目標附近來回擺動，通常是 kP 太大 |
 | Pathfinding | 即時路徑規劃 | 給定目標位置，自動找出避開障礙物的路徑 |
 | PathPlanner | PathPlanner | FRC 常用的路徑規劃工具，包含應用程式和 PathPlannerLib |
@@ -74,11 +81,13 @@
 | Pipeline | 處理流程 | 視覺系統中一組影像處理的設定，例如 AprilTag 偵測 |
 | Pose estimation | 姿態估計 | 結合 Odometry 和視覺等多種來源，估計機器人的位置 |
 | Pose2d | 位姿 | 機器人在場上的 X、Y 座標和朝向 |
+| Position wrapping | 位置繞回 | 讓馬達控制器的 PID 知道位置是一個圓，走比較近的那一邊 |
 | Pull request (PR) | 合併請求 | 請求把一個 Branch 的修改合併到另一個 Branch |
 | Requirements | 需求 | Command 會使用哪些 Subsystem，Scheduler 用它避免衝突 |
 | Robot-relative | 機器人座標 | 以機器人自己為準的方向，「前」是機器人面向的方向 |
 | RPM (Rotations Per Minute) | 每分鐘轉數 | 轉速的單位，REV 的編碼器速度使用這個單位 |
 | Scheduler | 排程器 | 每 20 ms 檢查 Trigger、執行 Command 的 WPILib 元件 |
+| Seeding | 校正（設定初始值） | 開機時用絕對式編碼器的讀值設定相對式編碼器的位置 |
 | Selectable | Selectable（選單） | 2027 的 Dashboard 選單，用來選擇自動程式，取代 SendableChooser |
 | Setpoint | 目標值 | 控制器要達到的值，例如 4000 RPM、90 度 |
 | Simulation | 模擬 | 在電腦上執行機器人程式，不需要真的機器人 |
@@ -100,5 +109,6 @@
 | tx / ty | 水平 / 垂直角度 | 目標相對於相機畫面中央的角度 |
 | Unit test | 單元測試 | 不需要機器人、自動檢查程式邏輯的測試 |
 | Vendor dependency (vendordep) | 廠商函式庫 | 廠商提供的程式庫，例如 REVLib、Phoenix 6 |
+| X lock | X 字鎖定 | 把 Swerve 的四個輪子轉成 X 字形，讓機器人很難被推動 |
 | Yaw | 偏航角 | 繞著垂直軸轉動的角度，也就是機器人的朝向 |
 | Zero offset | 零點偏移 | 讓絕對式編碼器在指定位置讀到 0 的設定 |

@@ -176,6 +176,33 @@ nav:
           - 飛輪 Shooter: 12-mechanisms/flywheel.md
           - 升降機構 Elevator: 12-mechanisms/elevator.md
           - 底盤 Drivetrain: 12-mechanisms/drivetrain.md
+  - Swerve 進階:
+      - 第 13 章 從零打造 Swerve:
+          - 13-swerve-drive/index.md
+          - 硬體與常數: 13-swerve-drive/hardware.md
+          - SwerveModule: 13-swerve-drive/module.md
+          - Drivetrain: 13-swerve-drive/drivetrain.md
+          - 第一次上電: 13-swerve-drive/first-drive.md
+          - 延伸學習: 13-swerve-drive/further.md
+      - 第 14 章 優化與調整:
+          - 14-swerve-tuning/index.md
+          - Optimize 與 Cosine 補償: 14-swerve-tuning/optimize.md
+          - SparkMax 轉向 PID: 14-swerve-tuning/onboard-pid.md
+          - 駕駛手感: 14-swerve-tuning/driver-input.md
+          - 調整參數: 14-swerve-tuning/tuning.md
+          - 延伸學習: 14-swerve-tuning/further.md
+      - 第 15 章 模擬:
+          - 15-swerve-sim/index.md
+          - 模擬怎麼運作: 15-swerve-sim/sim-basics.md
+          - 模擬 Swerve 模組: 15-swerve-sim/module-sim.md
+          - 用 AdvantageScope 看模擬: 15-swerve-sim/advantagescope.md
+          - 延伸學習: 15-swerve-sim/further.md
+      - 第 16 章 自動階段:
+          - 16-swerve-auto/index.md
+          - Swerve Odometry: 16-swerve-auto/odometry.md
+          - PathPlanner: 16-swerve-auto/pathplanner.md
+          - 視覺: 16-swerve-auto/vision.md
+          - 延伸學習: 16-swerve-auto/further.md
   - 附錄:
       - 名詞對照表: appendix/glossary.md
       - 寫作規範: appendix/style-guide.md
