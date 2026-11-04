@@ -51,6 +51,7 @@
 | Gain | 增益（參數） | 控制器的參數，例如 kP、kV |
 | Gamepad | 手把 | Xbox、PS4 / PS5 手把等 |
 | Heading | 朝向 | 機器人面向場地的哪個方向 |
+| Heading lock | 保持朝向 | 駕駛沒有在轉的時候，用 PID 把 Swerve 的朝向鎖住 |
 | Idle mode | 閒置模式 | 馬達輸出為 0 時的行為，分成 Brake 和 Coast |
 | IMU (Inertial Measurement Unit) | 慣性測量單元 | 量測轉向和加速度，常用來知道機器人朝哪個方向 |
 | Integral windup | 積分飽和 | PID 的 I 項累積過大，造成機構猛然衝出去 |
@@ -75,6 +76,7 @@
 | Odometry | 里程計 | 用編碼器和 IMU 累加計算機器人在場上的位置 |
 | Optimize | 最佳化 | Swerve 輪子要轉超過 90 度時，改成反方向轉、輪子倒著滾 |
 | Oscillation | 震盪 | 機構在目標附近來回擺動，通常是 kP 太大 |
+| Overloading | 方法多載 | 同一個名字、不同參數的方法，Java 依照傳入的參數決定呼叫哪一個 |
 | Pathfinding | 即時路徑規劃 | 給定目標位置，自動找出避開障礙物的路徑 |
 | PathPlanner | PathPlanner | FRC 常用的路徑規劃工具，包含應用程式和 PathPlannerLib |
 | PID | PID 控制 | 根據誤差的比例、累積、變化速度計算輸出的控制方法 |
@@ -90,6 +92,7 @@
 | Seeding | 校正（設定初始值） | 開機時用絕對式編碼器的讀值設定相對式編碼器的位置 |
 | Selectable | Selectable（選單） | 2027 的 Dashboard 選單，用來選擇自動程式，取代 SendableChooser |
 | Setpoint | 目標值 | 控制器要達到的值，例如 4000 RPM、90 度 |
+| Setpoint generator | 目標產生器 | 254 提出的 Swerve 演算法，把每次的速度變化限制在四個模組都做得到的範圍 |
 | Simulation | 模擬 | 在電腦上執行機器人程式，不需要真的機器人 |
 | Smart IO | Smart IO | Systemcore 上可以用程式切換功能的 I/O 埠 |
 | Stack trace | 堆疊追蹤 | 程式出錯時印出的訊息，指出錯誤發生在哪一行 |

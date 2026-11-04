@@ -176,7 +176,7 @@ nav:
           - 飛輪 Shooter: 12-mechanisms/flywheel.md
           - 升降機構 Elevator: 12-mechanisms/elevator.md
           - 底盤 Drivetrain: 12-mechanisms/drivetrain.md
-  - Swerve 進階:
+  - Swerve 實作:
       - 第 13 章 從零打造 Swerve:
           - 13-swerve-drive/index.md
           - 硬體與常數: 13-swerve-drive/hardware.md
@@ -203,6 +203,12 @@ nav:
           - PathPlanner: 16-swerve-auto/pathplanner.md
           - 視覺: 16-swerve-auto/vision.md
           - 延伸學習: 16-swerve-auto/further.md
+      - 第 17 章 Swerve 進階:
+          - 17-swerve-advanced/index.md
+          - Swerve Setpoint Generator: 17-swerve-advanced/setpoint-generator.md
+          - 加速度 Feedforward: 17-swerve-advanced/acceleration-ff.md
+          - 保持朝向: 17-swerve-advanced/heading-lock.md
+          - 延伸學習: 17-swerve-advanced/further.md
   - 附錄:
       - 名詞對照表: appendix/glossary.md
       - 寫作規範: appendix/style-guide.md
