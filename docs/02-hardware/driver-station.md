@@ -49,7 +49,7 @@ FRC 最常用的是 Xbox 手把，PS4 / PS5 手把也可以用。程式讀手把
 - **Button（按鈕）**：只有按下 / 放開兩種狀態
 
 <figure markdown="span">
-  ![Xbox One 手把](../assets/photos/gamepad.jpg){ loading=lazy }
+  ![Xbox One 手把](../assets/photos/gamepad.jpg){ width="960" height="872" }
   <figcaption>Xbox One 手把：兩支搖桿和前方的板機是 Axis，右側 A / B / X / Y 和其他按鈕是 Button</figcaption>
 </figure>
 

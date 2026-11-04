@@ -20,7 +20,7 @@
 - **Endgame（終局）**：比賽最後的一段時間，通常有額外的得分任務
 
 <figure markdown="span">
-  ![FRC 9450 隊 2024 年的機器人，夾著一個遊戲物件](../assets/photos/frc-robot.jpg){ loading=lazy }
+  ![FRC 9450 隊 2024 年的機器人，夾著一個遊戲物件](../assets/photos/frc-robot.jpg){ width="884" height="1042" }
   <figcaption>FRC 9450 隊 2024 年的機器人。每年的題目不同，機器人的樣子也完全不一樣</figcaption>
 </figure>
 

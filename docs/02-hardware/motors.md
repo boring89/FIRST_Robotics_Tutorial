@@ -56,7 +56,7 @@ FRC 最常見的兩家廠商是 **REV Robotics** 和 **CTR Electronics (CTRE)**�
     | SPARK Flex | 馬達控制器 | 搭配 NEO Vortex 使用 |
 
     <figure markdown="span">
-      ![SPARK MAX 和 SPARK Flex 馬達控制器](../assets/photos/rev-motors.jpg){ loading=lazy }
+      ![SPARK MAX 和 SPARK Flex 馬達控制器](../assets/photos/rev-motors.jpg){ width="1066" height="710" }
       <figcaption>左：SPARK MAX。右：SPARK Flex，直接裝在 NEO Vortex 的後面。NEO 系列的馬達要接到這些控制器才能控制</figcaption>
     </figure>
 
@@ -75,7 +75,7 @@ FRC 最常見的兩家廠商是 **REV Robotics** 和 **CTR Electronics (CTRE)**�
     | Talon FXS | 馬達控制器 | 外接馬達用（例如 Minion 馬達） |
 
     <figure markdown="span">
-      ![Talon FX 馬達的後端](../assets/photos/ctre-motors.jpg){ loading=lazy }
+      ![Talon FX 馬達的後端](../assets/photos/ctre-motors.jpg){ width="707" height="470" }
       <figcaption>Talon FX 控制器內建在馬達裡（圖是馬達的後端），一顆馬達就是一個 CAN 裝置</figcaption>
     </figure>
 

@@ -1,5 +1,6 @@
-/* 硬體照片：不要撐滿整個版面 */
+/* 硬體照片：不要撐滿整個版面，縮小時維持比例 */
 .md-typeset figure img {
   max-width: min(100%, 36rem);
+  height: auto;
   border-radius: 0.2rem;
 }

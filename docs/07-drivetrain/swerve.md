@@ -25,7 +25,7 @@ Swerve 底盤通常有 4 個 **Swerve module（模組）**，裝在機器人的�
 四個輪子都能各自轉到任何方向，所以機器人可以**往任何方向移動，同時自轉**。
 
 <figure markdown="span">
-  ![四個角落各有一個 Swerve 模組的底盤](../assets/photos/swerve-module.jpg){ loading=lazy }
+  ![四個角落各有一個 Swerve 模組的底盤](../assets/photos/swerve-module.jpg){ width="647" height="415" }
   <figcaption>Swerve 底盤：四個角落各有一個模組，每個模組有兩顆馬達（驅動、轉向）和一個絕對式編碼器</figcaption>
 </figure>
 

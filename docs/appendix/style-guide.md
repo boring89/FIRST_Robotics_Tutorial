@@ -64,7 +64,7 @@
 
 ```markdown
 <figure markdown="span">
-  ![裝在機器人上的 Limelight](../assets/photos/limelight-mounted.jpg){ loading=lazy }
+  ![裝在機器人上的 Limelight](../assets/photos/limelight-mounted.jpg){ width="1600" height="1067" }
   <figcaption>照片下方的說明</figcaption>
 </figure>
 ```

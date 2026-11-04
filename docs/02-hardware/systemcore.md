@@ -21,7 +21,7 @@
 可以把 Systemcore 想成一台跑 Linux 的小電腦，加上一堆專門接機器人元件的連接埠。
 
 <figure markdown="span">
-  ![Systemcore 正面示意圖](../assets/photos/systemcore.jpg){ loading=lazy }
+  ![Systemcore 正面示意圖](../assets/photos/systemcore.jpg){ width="969" height="523" }
   <figcaption>Systemcore 正面（示意圖）。中間的螢幕開機後會顯示 Wi-Fi 熱點的名稱、密碼和 IP 位址</figcaption>
 </figure>
 
@@ -39,7 +39,7 @@
 | 內建 IMU | 1 個 | 不用外接就能知道機器人的轉向 |
 
 <figure markdown="span">
-  ![Systemcore 的連接埠，Smart I/O 用紅框標出](../assets/photos/systemcore-ports.jpg){ loading=lazy }
+  ![Systemcore 的連接埠，Smart I/O 用紅框標出](../assets/photos/systemcore-ports.jpg){ width="969" height="523" }
   <figcaption>上排：電源、Bridge、LINK（USB-C）、CAN BUS 0～4，右邊是 Ethernet。下排：RSL、Smart I/O 0～5（紅框）、USB 0～3、I2C 0～1</figcaption>
 </figure>
 
