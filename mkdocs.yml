@@ -209,6 +209,13 @@ nav:
           - 加速度 Feedforward: 17-swerve-advanced/acceleration-ff.md
           - 保持朝向: 17-swerve-advanced/heading-lock.md
           - 延伸學習: 17-swerve-advanced/further.md
+      - 第 18 章 硬體抽象化與 AdvantageKit:
+          - 18-hardware-abstraction/index.md
+          - 硬體抽象化: 18-hardware-abstraction/concept.md
+          - 改寫 Swerve: 18-hardware-abstraction/swerve-io.md
+          - AdvantageKit: 18-hardware-abstraction/advantagekit.md
+          - Log replay: 18-hardware-abstraction/replay.md
+          - 延伸學習: 18-hardware-abstraction/further.md
   - 附錄:
       - 名詞對照表: appendix/glossary.md
       - 寫作規範: appendix/style-guide.md

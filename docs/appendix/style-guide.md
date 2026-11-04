@@ -62,7 +62,7 @@
 python3 tools/check_java.py docs <WPILib 安裝資料夾>/jdk/bin/java /tmp/java-check <機器人專案>
 ```
 
-- 範例用到其他頁面的類別（例如 `RobotContainer` 用到 `Intake`）時，把那些類別的 REV 版本放在 `tools/robot-fixtures/<章節資料夾>/common/`。某一頁需要不同版本時，放在 `tools/robot-fixtures/<章節資料夾>/<頁面檔名>/`，會蓋過 `common/` 的同名檔案
+- 範例用到其他頁面的類別（例如 `RobotContainer` 用到 `Intake`）時，把那些類別的 REV 版本放在 `tools/robot-fixtures/<章節資料夾>/common/`。某一頁需要不同版本時，放在 `tools/robot-fixtures/<章節資料夾>/<頁面檔名>/`，會蓋過 `common/` 的同名檔案。fixture 也可以放 `build.gradle` 和 `vendordeps/`，例如第 18 章帶了自己的 AdvantageKit vendordep 和修改過的 `build.gradle`，第一次檢查時要在有網路的情況下編譯，讓 Gradle 下載 AdvantageKit
 
 ## 自動檢查
 

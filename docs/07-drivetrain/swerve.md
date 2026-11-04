@@ -168,7 +168,7 @@ public final class SwerveKinematicsDemo {
 
 用現成方案時，最重要的工作是**量測和設定正確的參數**：模組的位置、齒輪比、輪子直徑、編碼器的零點、馬達方向。參數錯了，Swerve 會亂轉。
 
-想知道這些方案裡面在做什麼，或是硬體組合沒有現成方案（例如 TalonFX 驅動、SparkMax 轉向），[第 13 章到第 17 章](../13-swerve-drive/index.md) 會帶你從零寫一套 Swerve。
+想知道這些方案裡面在做什麼，或是硬體組合沒有現成方案（例如 TalonFX 驅動、SparkMax 轉向），[第 13 章到第 18 章](../13-swerve-drive/index.md) 會帶你從零寫一套 Swerve。
 
 ## 常見錯誤
 
