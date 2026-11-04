@@ -42,6 +42,10 @@ Odometry 假設輪子沒有打滑。被撞的時候，可以比較「Kinematics 
 
 **Choreo** 是另一個路徑規劃工具，它用**最佳化**算出在機器人物理限制下最快的路徑（PathPlanner 是你畫出路徑的形狀，再規劃速度）。PathPlannerLib 可以直接讀取 Choreo 的路徑。使用前先確認它是否已經支援 2027。
 
+## 再往下
+
+[第 17 章 Swerve 進階](../17-swerve-advanced/index.md) 參考 254 等強隊的做法，加上 Setpoint Generator、加速度 Feedforward 和保持朝向。
+
 ## 進一步閱讀
 
 - [PathPlanner 文件](https://pathplanner.dev/home.html)：Holonomic 設定、Pathfinding、Choreo 整合

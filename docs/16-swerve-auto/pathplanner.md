@@ -64,7 +64,7 @@ public static final class AutoConstants {
 
 ### Drivetrain
 
-這是四章最後完整的 `Drivetrain`，包含[上一頁](odometry.md) 的 Pose estimator 和駕駛視角、[第 14 章](../14-swerve-tuning/index.md) 的優化、[第 15 章](../15-swerve-sim/index.md) 的模擬，以及[下一頁](vision.md) 會用到的 `addVisionMeasurement`：
+這是第 13～16 章最後完整的 `Drivetrain`，包含[上一頁](odometry.md) 的 Pose estimator 和駕駛視角、[第 14 章](../14-swerve-tuning/index.md) 的優化、[第 15 章](../15-swerve-sim/index.md) 的模擬，以及[下一頁](vision.md) 會用到的 `addVisionMeasurement`：
 
 ```java title="src/main/java/first/robot/subsystems/Drivetrain.java"
 package first.robot.subsystems;

@@ -49,6 +49,7 @@
 | [第 14 章 Swerve 優化與調整](14-swerve-tuning/index.md) | Optimize、SparkMax 轉向 PID、駕駛手感、調參數 |
 | [第 15 章 Swerve 模擬](15-swerve-sim/index.md) | 在電腦上模擬馬達和感測器，不用機器人也能測試 |
 | [第 16 章 Swerve 自動階段](16-swerve-auto/index.md) | Odometry、PathPlanner、視覺修正位置 |
+| [第 17 章 Swerve 進階](17-swerve-advanced/index.md) | 254 的 Setpoint Generator、加速度 Feedforward、保持朝向 |
 
 每一章最後都有一節 **延伸學習**，放進階主題和外部資源，第一次讀可以先跳過。
 

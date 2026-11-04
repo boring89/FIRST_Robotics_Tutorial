@@ -2,7 +2,7 @@
 
 --8<-- "alpha-warning.md"
 
-[第 7 章的 Swerve 入門](../07-drivetrain/swerve.md) 建議第一次做 Swerve 時用現成的方案。這一章到第 16 章反過來：**不用任何 Swerve 函式庫，自己從頭寫一套 Swerve**。寫過一次，你會真正理解現成方案裡每一個參數在做什麼，出問題時也知道從哪裡查起。
+[第 7 章的 Swerve 入門](../07-drivetrain/swerve.md) 建議第一次做 Swerve 時用現成的方案。這一章到第 17 章反過來：**不用任何 Swerve 函式庫，自己從頭寫一套 Swerve**。寫過一次，你會真正理解現成方案裡每一個參數在做什麼，出問題時也知道從哪裡查起。
 
 ## 為什麼要自己寫
 
@@ -14,7 +14,7 @@
 
 這幾章用的是一個**混搭**的組合：驅動用 CTRE 的 TalonFX，轉向用 REV 的 SparkMax。全部用 CTRE 或全部用 REV 都有官方的現成方案，但混搭就只能靠自己。混搭也剛好讓你同時看到兩家的寫法。
 
-## 這四章的硬體
+## 這幾章的硬體
 
 | 元件 | 用途 | 程式類別 |
 | --- | --- | --- |
@@ -26,7 +26,7 @@
 !!! info "為什麼不用 navX"
     Studica 的 2027 函式庫（StudicaLib 2027.0.0-alpha-1）目前只支援 **navX3**，navX2 在 2027 還沒有官方支援。Systemcore 內建的 IMU 不需要額外接線，所以這幾章直接使用它，用法和[第 6 章](../06-motors-sensors/gyro.md)一樣。
 
-## 四章的路線
+## 路線
 
 | 章節 | 做完之後 |
 | --- | --- |
@@ -34,6 +34,7 @@
 | [第 14 章 優化與調整](../14-swerve-tuning/index.md) | 轉向更快更準、駕駛手感更好、參數調好 |
 | [第 15 章 模擬](../15-swerve-sim/index.md) | 沒有機器人也能在電腦上測試 Swerve 程式 |
 | [第 16 章 自動階段](../16-swerve-auto/index.md) | Odometry、PathPlanner、視覺修正位置 |
+| [第 17 章 進階](../17-swerve-advanced/index.md) | 254 的 Setpoint Generator、加速度 Feedforward、保持朝向 |
 
 ## 程式的架構
 
