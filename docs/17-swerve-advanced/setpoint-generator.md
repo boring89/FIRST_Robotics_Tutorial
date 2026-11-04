@@ -60,7 +60,7 @@ Setpoint Generator 要知道機器人的物理參數，才能算出「做得到�
 !!! warning "注意：PathPlannerLib 2027 alpha 的已知問題"
     PathPlannerLib 2027.0.0-alpha-4.1 的 `SwerveSetpointGenerator` 是從 2026 版本改過來的。2026 的 `optimize()` 和 `desaturateWheelSpeeds()` 會**直接修改**傳入的物件，2027 改成**回傳新的物件**（[第 14 章](../14-swerve-tuning/optimize.md#這兩個方法都會回傳新的物件)），但它的程式裡有兩個地方沒有接住回傳值。
 
-    在模擬裡測到的影響是：輪子的速度可能**略為超過** `MAX_SPEED`（最高約 4.66 m/s，接近馬達的真正極速），其他行為都正常。撰寫本章時（2026 年 11 月），PathPlanner 的 2027 分支還沒有修正。更新 PathPlannerLib 之後記得再確認。
+    在模擬裡測到的影響是：輪子的速度可能**略為超過** `MAX_SPEED`（最高約 4.66 m/s，接近馬達的真正極速），其他行為都正常。撰寫本章時（2026 年 11 月），PathPlanner 的 2027 分支還沒有修正，已回報在 [PathPlanner issue #1185](https://github.com/mjansen4857/pathplanner/issues/1185)。更新 PathPlannerLib 之前，可以先看這個 issue 有沒有關閉。
 
 ## 範例
 
