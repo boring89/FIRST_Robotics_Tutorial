@@ -19,7 +19,7 @@
 2. 算出它相對於相機的**位置和角度**
 
 <figure markdown="span">
-  ![AprilTag 圖案和貼著 AprilTag 的機器人](../assets/photos/apriltag.jpg){ loading=lazy }
+  ![AprilTag 圖案和貼著 AprilTag 的機器人](../assets/photos/apriltag.jpg){ width="790" height="400" }
   <figcaption>AprilTag：黑白方塊組成的圖案，每個圖案代表一個編號</figcaption>
 </figure>
 

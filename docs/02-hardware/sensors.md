@@ -45,7 +45,7 @@
     - **CANcoder**：直接接在 CAN 上的絕對式編碼器，常用在 Swerve 轉向模組
 
     <figure markdown="span">
-      ![CANcoder，狀態燈用紅圈標出](../assets/photos/ctre-cancoder.jpg){ loading=lazy }
+      ![CANcoder，狀態燈用紅圈標出](../assets/photos/ctre-cancoder.jpg){ width="785" height="523" }
       <figcaption>CANcoder，紅圈是狀態燈。它讀取裝在轉軸末端的磁鐵的角度</figcaption>
     </figure>
 
@@ -66,7 +66,7 @@ IMU 量測機器人的**轉向和加速度**。最常用到的是 **Heading（�
 - 光遮斷感測器：遊戲物件擋住光線時觸發，程式就知道「拿到東西了」
 
 <figure markdown="span">
-  ![一個有拉桿的微動開關](../assets/photos/digital-sensors.jpg){ loading=lazy }
+  ![一個有拉桿的微動開關](../assets/photos/digital-sensors.jpg){ width="960" height="720" }
   <figcaption>常見的極限開關：有拉桿的微動開關，拉桿被壓下時觸發</figcaption>
 </figure>
 
