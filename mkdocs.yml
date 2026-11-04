@@ -217,6 +217,13 @@ nav:
           - AdvantageKit: 18-hardware-abstraction/advantagekit.md
           - Log replay: 18-hardware-abstraction/replay.md
           - 延伸學習: 18-hardware-abstraction/further.md
+      - 第 20 章 Swerve 量測與校正:
+          - 20-swerve-calibration/index.md
+          - 輪子半徑: 20-swerve-calibration/wheel-radius.md
+          - 打滑電流: 20-swerve-calibration/slip-current.md
+          - 驅動的 SysId: 20-swerve-calibration/drive-sysid.md
+          - 把結果填回去: 20-swerve-calibration/results.md
+          - 延伸學習: 20-swerve-calibration/further.md
   - 比賽機器人:
       - 第 19 章 Superstructure 與狀態機:
           - 19-superstructure/index.md

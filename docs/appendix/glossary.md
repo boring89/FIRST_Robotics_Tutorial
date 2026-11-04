@@ -23,9 +23,11 @@
 | Brushless motor | 無刷馬達 | 沒有碳刷的馬達，效率高，需要搭配無刷馬達控制器 |
 | CAN (Controller Area Network) | CAN 匯流排 | 讓控制器和各種裝置互相傳資料的通訊線路 |
 | CAN ID | CAN 編號 | 每個 CAN 裝置在同一條匯流排上的唯一編號 |
+| Characterization | 量測（特性量測） | 讓機構照固定的方式動，量出它的物理參數，例如 SysId、輪子半徑的量測 |
 | Circuit breaker | 斷路器 | 電流過大時自動斷電，保護線路 |
 | Closed loop / Open loop | 閉迴路 / 開迴路 | 是否根據感測器量到的結果修正輸出 |
 | Code review | 程式碼審查 | 合併之前請別人看過程式碼 |
+| Coefficient of friction | 摩擦係數 | 輪子能推的最大力 ÷ 壓在輪子上的重量，和輪子、地毯的材質有關 |
 | Command | Command（指令） | 機器人要執行的一個動作，例如「Intake 吸入」 |
 | Command factory | 指令工廠方法 | 回傳 Command 的方法，例如 `intake.intakeCommand()` |
 | Commands v2 / v3 | Commands v2 / v3 | WPILib 的兩代 Command-based 框架，本教學以 v2 為主 |
@@ -105,10 +107,12 @@
 | Setpoint | 目標值 | 控制器要達到的值，例如 4000 RPM、90 度 |
 | Setpoint generator | 目標產生器 | 254 提出的 Swerve 演算法，把每次的速度變化限制在四個模組都做得到的範圍 |
 | Simulation | 模擬 | 在電腦上執行機器人程式，不需要真的機器人 |
+| Slip current | 打滑電流 | 驅動馬達的定子電流大到輪子開始打滑時的值，電流限制常照它設定 |
 | Smart IO | Smart IO | Systemcore 上可以用程式切換功能的 I/O 埠 |
 | Stack trace | 堆疊追蹤 | 程式出錯時印出的訊息，指出錯誤發生在哪一行 |
 | Standard deviation | 標準差 | 在 Pose estimation 中代表一筆資料有多不可信，越大越不可信 |
 | State machine | 狀態機 | 用「狀態」和「狀態之間的轉換」描述機構行為的方法 |
+| Stator current | 定子電流 | 流過馬達線圈的電流，和馬達的扭力成正比；和電池送出的 Supply current 不同 |
 | Subsystem | Subsystem（子系統） | Commands v2 裡代表一個機構的類別 |
 | Superstructure | 上層結構 | 底盤以外、會互相影響的機構的合稱，也常指協調它們的 Subsystem |
 | Swerve drive | 全向轉向底盤 | 每個輪子都能獨立轉向和驅動的底盤 |
