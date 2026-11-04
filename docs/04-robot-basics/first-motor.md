@@ -159,5 +159,39 @@ motor.setThrottle(0.2);
 3. 修改程式，讓馬達在 Teleop 時轉、在 Autonomous 時以反方向轉。
 4. 想一想：如果把 `motor.setThrottle(0.2)` 放在 `teleopInit()` 而不是 `teleopPeriodic()`，馬達會轉嗎？為什麼？
 
+??? question "第 2 題參考答案"
+    馬達會往**反方向**轉，速度一樣是 20%。正負號只決定方向。
+
+??? question "第 3 題參考答案"
+    以 REV 為例（CTRE 只有建立馬達的那一行不一樣）：
+
+    ```java title="src/main/java/first/robot/Robot.java"
+    package first.robot;
+
+    import com.revrobotics.spark.SparkLowLevel.MotorType;
+    import com.revrobotics.spark.SparkMax;
+    import org.wpilib.framework.TimedRobot;
+    import org.wpilib.hardware.bus.CANPort;
+
+    public class Robot extends TimedRobot {
+      private final SparkMax motor = new SparkMax(CANPort.CAN_S0, 10, MotorType.kBrushless);
+
+      @Override
+      public void teleopPeriodic() {
+        motor.setThrottle(0.2);
+      }
+
+      @Override
+      public void autonomousPeriodic() {
+        motor.setThrottle(-0.2);
+      }
+
+      @Override
+      public void disabledInit() {
+        motor.stopMotor();
+      }
+    }
+    ```
+
 ??? question "第 4 題參考答案"
     會轉。`setThrottle()` 設定之後，馬達會一直維持這個輸出，所以只在進入 Teleop 時設定一次也會轉。不過實際的機器人程式通常要根據手把或感測器隨時調整輸出，所以會放在 `Periodic` 裡每次重新設定。

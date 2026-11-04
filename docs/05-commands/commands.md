@@ -148,6 +148,17 @@ CommandScheduler.getInstance().schedule(command);
 2. 用 `runEnd` 寫一個 Command：執行期間每 20 ms 都把 `-gamepad.getLeftY()` 設給 Intake 馬達，結束時停止。（提示：Subsystem 的方法要接收一個 `DoubleSupplier` 參數）
 3. 寫一個自訂 Command 類別 `EjectForTime`：吐出 1 秒後自動結束。（提示：用計數器，或在 `initialize()` 記下開始時間）
 
+??? question "第 1 題參考答案"
+    ```java
+    public Command slowIntakeCommand() {
+      return startEnd(() -> setThrottle(0.3), this::stop)
+          .until(this::hasGamePiece)
+          .withName("SlowIntake");
+    }
+    ```
+
+    和 `intakeCommand()` 一樣，只是速度不同。如果有很多種速度，可以改成接收一個速度參數的 `intakeCommand(double throttle)`。
+
 ??? question "第 2 題參考答案"
     ```java
     public Command manualCommand(DoubleSupplier throttle) {
@@ -156,3 +167,43 @@ CommandScheduler.getInstance().schedule(command);
     ```
 
     使用時：`intake.manualCommand(() -> -driver.getLeftY())`。這就是 [Lambda](../01-java/lambda.md#常見錯誤) 那頁「傳值和傳取得值的方法」的差別：要傳 Lambda，Command 每次執行才會讀到最新的搖桿值。
+
+??? question "第 3 題參考答案"
+    ```java title="src/main/java/first/robot/commands/EjectForTime.java"
+    package first.robot.commands;
+
+    import first.robot.Constants.IntakeConstants;
+    import first.robot.subsystems.Intake;
+    import org.wpilib.command2.Command;
+    import org.wpilib.system.Timer;
+
+    public class EjectForTime extends Command {
+      private final Intake intake;
+      private final Timer timer = new Timer();
+
+      public EjectForTime(Intake intake) {
+        this.intake = intake;
+        addRequirements(intake);
+      }
+
+      @Override
+      public void initialize() {
+        timer.restart();
+        intake.setThrottle(IntakeConstants.EJECT_THROTTLE);
+      }
+
+      @Override
+      public boolean isFinished() {
+        return timer.hasElapsed(1.0);
+      }
+
+      @Override
+      public void end(boolean interrupted) {
+        intake.stop();
+      }
+    }
+    ```
+
+    WPILib 的 `Timer` 用 `restart()` 歸零並開始計時，`hasElapsed(秒數)` 判斷時間到了沒。
+
+    同樣的事情用 factory 只要一行：`intake.ejectCommand().withTimeout(1.0)`。

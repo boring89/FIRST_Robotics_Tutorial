@@ -306,3 +306,6 @@ tester.faceLeft().whileTrue(shooter.sysIdDynamic(SysIdRoutine.Direction.REVERSE)
 1. 為 Shooter 跑完四個 SysId 測試，比較 SysId 算出的 kV 和[Feedforward](feedforward.md)那頁手動調出來的值。
 2. 用 SysId 的結果更新 `Constants.java`，觀察 Shooter 的轉速曲線有沒有變得更穩定。
 3. 想一想：手臂的 SysId 測試，為什麼要選 **Arm** 分析類型，而不是 **Simple**？（提示：重力）
+
+??? question "第 3 題參考答案"
+    手臂有**重力**，而且重力的影響會隨角度改變（水平時最大、垂直時為 0）。**Simple** 的模型只有 kS、kV、kA，沒有重力項，SysId 會把重力的影響錯算到其他參數裡，結果就不準。**Arm** 的模型多了 `kG × cos(角度)`，才能正確分離出重力和其他參數。

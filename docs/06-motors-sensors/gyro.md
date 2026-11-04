@@ -169,3 +169,18 @@ driver.start().onTrue(drivetrain.resetHeadingCommand());
 1. 部署範例，在 Elastic 上觀察 `Drivetrain/HeadingDegrees`。用手把機器人往左轉 90 度，讀到的是 90 還是 -90？
 2. 繼續往左轉超過 180 度，觀察數值的變化。
 3. 寫一個方法 `public boolean isFacingForward()`：朝向在 0 度 ±10 度以內時回傳 `true`。注意 -5 度和 355 度要怎麼處理？（提示：`getHeading().getDegrees()` 已經限制在 -180～180 度了）
+
+??? question "第 1 題參考答案"
+    讀到 **90**。WPILib 的慣例是逆時針（往左轉）為正。
+
+??? question "第 2 題參考答案"
+    轉過 180 度的瞬間，數值會從 180 **跳到 -180**，再繼續往 0 的方向變化（例如轉了 190 度讀到 -170）。這是 2027 的 `getDegrees()` 限制在 -180～180 度的結果。
+
+??? question "第 3 題參考答案"
+    ```java
+    public boolean isFacingForward() {
+      return Math.abs(getHeading().getDegrees()) < 10;
+    }
+    ```
+
+    因為 `getDegrees()` 已經限制在 -180～180 度，355 度會讀成 -5 度，所以只要判斷絕對值小於 10 就好，不用另外處理 355 度。

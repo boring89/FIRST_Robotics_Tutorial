@@ -237,3 +237,48 @@ kV ≈ 12 V ÷ 馬達空轉最高速度
 1. 把 `KP` 設成 0，調整 `KV`，讓 Shooter 只靠 Feedforward 就能接近 4000 RPM。記下最後的 `KV`，和用馬達規格估的值比較。
 2. 加上 `KP`，觀察發射遊戲物件時轉速下降多少、多久恢復。
 3. 修改 `spinCommand()`，讓它接收一個目標轉速參數，近距離和遠距離發射可以用不同轉速。
+
+??? question "第 3 題參考答案"
+    加一個欄位記住目前的目標，讓 `isAtSpeed()` 也跟著用：
+
+    === "REV"
+
+        ```java
+        private double targetRpm = ShooterConstants.TARGET_RPM;
+
+        public boolean isAtSpeed() {
+          return Math.abs(getRpm() - targetRpm) < ShooterConstants.RPM_TOLERANCE;
+        }
+
+        public Command spinCommand(double rpm) {
+          return startEnd(
+                  () -> {
+                    targetRpm = rpm;
+                    controller.setSetpoint(rpm, ControlType.kVelocity);
+                  },
+                  motor::stopMotor)
+              .withName("Spin");
+        }
+        ```
+
+    === "CTRE"
+
+        ```java
+        private double targetRpm = ShooterConstants.TARGET_RPM;
+
+        public boolean isAtSpeed() {
+          return Math.abs(getRpm() - targetRpm) < ShooterConstants.RPM_TOLERANCE;
+        }
+
+        public Command spinCommand(double rpm) {
+          return startEnd(
+                  () -> {
+                    targetRpm = rpm;
+                    motor.setControl(velocityRequest.withVelocity(rpm / 60.0));
+                  },
+                  motor::stopMotor)
+              .withName("Spin");
+        }
+        ```
+
+    原本不帶參數的 `spinCommand()` 可以保留成 `return spinCommand(ShooterConstants.TARGET_RPM);`，其他用到它的地方就不用改。

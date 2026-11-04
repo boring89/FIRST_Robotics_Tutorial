@@ -122,5 +122,30 @@ void main() {
     IO.println(7 % 2);
     ```
 
+??? question "第 1 題參考答案"
+    ```java title="ShooterConstants.java"
+    void main() {
+        final int SHOOTER_CAN_ID = 15;
+        double shooterSpeed = 0.65;
+
+        IO.println("Shooter CAN ID：" + SHOOTER_CAN_ID);
+        IO.println("Shooter 速度：" + shooterSpeed);
+    }
+    ```
+
+??? question "第 2 題參考答案"
+    ```java title="SixInchWheel.java"
+    void main() {
+        final double INCH_TO_METERS = 0.0254;
+        double diameterMeters = 6 * INCH_TO_METERS;            // 0.1524 公尺
+        double metersPerRotation = Math.PI * diameterMeters;   // 約 0.479 公尺
+
+        IO.println("直徑：" + diameterMeters + " 公尺");
+        IO.println("轉一圈：" + metersPerRotation + " 公尺");
+    }
+    ```
+
+    6 英寸 = 0.1524 公尺，轉一圈大約走 0.479 公尺。
+
 ??? question "第 3 題答案"
     `3`、`3.5`、`1`。第一行是整數除法，小數被丟掉；第二行有一個小數，結果是小數；第三行 `%` 是取餘數，7 除以 2 餘 1。

@@ -369,3 +369,50 @@ new Trigger(() -> Math.abs(driver.getRightY()) > 0.2)
 1. 照著調整順序調出你們手臂的參數，記錄每個參數的值。
 2. 寫一個 Trigger：手臂到達 `SCORE_ANGLE_DEGREES` 時印出「手臂到位」。（提示：`arm.isAtAngle(...)`）
 3. 修改 `ScoringCommands.shoot()`：先把手臂轉到發射角度，等手臂到位、Shooter 轉速到了，再送料。（提示：`Commands.waitUntil()` 搭配 `deadlineFor()`）
+
+??? question "第 2 題參考答案"
+    ```java
+    new Trigger(() -> arm.isAtAngle(ArmConstants.SCORE_ANGLE_DEGREES))
+        .onTrue(Commands.print("手臂到位"));
+    ```
+
+    `onTrue` 只在條件**從 false 變成 true** 的那一刻觸發，所以手臂停在目標角度時只會印一次。
+
+??? question "第 3 題參考答案"
+    在 `ScoringCommands` 加一個新的方法，原本的 `shoot()` 保留給不需要動手臂的情況：
+
+    ```java title="src/main/java/first/robot/commands/ScoringCommands.java"
+    package first.robot.commands;
+
+    import first.robot.Constants.ArmConstants;
+    import first.robot.Constants.ShooterConstants;
+    import first.robot.subsystems.Arm;
+    import first.robot.subsystems.Intake;
+    import first.robot.subsystems.Shooter;
+    import org.wpilib.command2.Command;
+    import org.wpilib.command2.Commands;
+
+    public final class ScoringCommands {
+      public static Command shoot(Intake intake, Shooter shooter) {
+        return Commands.waitUntil(shooter::isAtSpeed)
+            .withTimeout(ShooterConstants.SPIN_UP_TIMEOUT_SECONDS)
+            .andThen(intake.feedCommand().withTimeout(ShooterConstants.FEED_SECONDS))
+            .deadlineFor(shooter.spinCommand())
+            .withName("Shoot");
+      }
+
+      /** 手臂轉到發射角度、Shooter 轉到夠快，兩個都好了才送料。 */
+      public static Command shootWithArm(Intake intake, Shooter shooter, Arm arm) {
+        return Commands.waitUntil(
+                () -> arm.isAtAngle(ArmConstants.SCORE_ANGLE_DEGREES) && shooter.isAtSpeed())
+            .withTimeout(ShooterConstants.SPIN_UP_TIMEOUT_SECONDS)
+            .andThen(intake.feedCommand().withTimeout(ShooterConstants.FEED_SECONDS))
+            .deadlineFor(shooter.spinCommand(), arm.goToAngleCommand(ArmConstants.SCORE_ANGLE_DEGREES))
+            .withName("ShootWithArm");
+      }
+
+      private ScoringCommands() {}
+    }
+    ```
+
+    `deadlineFor` 可以同時放好幾個 Command：等待和送料的期間，Shooter 一直轉、手臂一直停在發射角度。

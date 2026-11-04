@@ -187,3 +187,18 @@ driver.dpadRight().onTrue(new TurnToAngle(drivetrain, -90));
 1. 照著步驟調出你們底盤的 `TURN_KP`，記錄每次調整的值和結果。
 2. 在 `TurnToAngle` 的 `execute()` 裡用 Telemetry 送出目標角度和目前角度，在 AdvantageScope 看轉向的曲線。
 3. 想一想：為什麼 `TurnToAngle` 適合在 Systemcore 上算，而 Shooter 的轉速適合在馬達控制器上算？
+
+??? question "第 2 題參考答案"
+    在 `execute()` 的最後加上：
+
+    ```java
+    Telemetry.log("TurnToAngle/TargetDegrees", controller.getSetpoint());
+    Telemetry.log("TurnToAngle/HeadingDegrees", drivetrain.getHeading().getDegrees());
+    Telemetry.log("TurnToAngle/Output", output);
+    ```
+
+    在 AdvantageScope 的 Line Graph 把目標和目前角度放在同一張圖，就能看出有沒有衝過頭、多久穩定下來。
+
+??? question "第 3 題參考答案"
+    - **`TurnToAngle`** 用的是 **IMU** 的角度。IMU 在 Systemcore 上（或接在 CAN 上），馬達控制器讀不到它，所以只能在 Systemcore 上算
+    - **Shooter 的轉速**由**馬達內建的編碼器**量測，控制器自己就讀得到。在控制器上算每 1 ms 更新一次，比 Systemcore 的 20 ms 快很多，也不受 CAN 延遲影響

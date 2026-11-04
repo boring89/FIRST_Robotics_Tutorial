@@ -233,3 +233,64 @@ driver.rightTrigger().whileTrue(new AimAtTarget(drivetrain, vision, () -> -drive
 1. 設定好 Limelight，在 AdvantageScope 的場地圖上同時顯示 `Telemetry/Drivetrain/Pose` 和 `Telemetry/Vision/Pose`，推著機器人走，比較兩者的差別。
 2. 用力推機器人讓輪子打滑，觀察加了視覺之後，底盤的位置會不會自己修正回來。
 3. 修改 `AimAtTarget`：沒有看到目標時，讓駕駛可以用右搖桿手動轉向。
+
+??? question "第 3 題參考答案"
+    加一個 `turn` 參數：看到目標時自動對準，沒看到時用駕駛的輸入。保留原本的建構子，讓舊的程式不用改：
+
+    ```java title="src/main/java/first/robot/commands/AimAtTarget.java"
+    package first.robot.commands;
+
+    import first.robot.Constants.VisionConstants;
+    import first.robot.subsystems.Drivetrain;
+    import first.robot.subsystems.Vision;
+    import java.util.function.DoubleSupplier;
+    import org.wpilib.command2.Command;
+    import org.wpilib.math.controller.PIDController;
+
+    /** 看到目標時自動轉向對準；沒看到時讓駕駛自己轉。 */
+    public class AimAtTarget extends Command {
+      private final Drivetrain drivetrain;
+      private final Vision vision;
+      private final DoubleSupplier forward;
+      private final DoubleSupplier turn;
+      private final PIDController controller = new PIDController(VisionConstants.AIM_KP, 0.0, 0.0);
+
+      /** 原本的用法：沒看到目標時不轉。 */
+      public AimAtTarget(Drivetrain drivetrain, Vision vision, DoubleSupplier forward) {
+        this(drivetrain, vision, forward, () -> 0.0);
+      }
+
+      public AimAtTarget(Drivetrain drivetrain, Vision vision, DoubleSupplier forward, DoubleSupplier turn) {
+        this.drivetrain = drivetrain;
+        this.vision = vision;
+        this.forward = forward;
+        this.turn = turn;
+        controller.setSetpoint(0.0);
+        controller.setTolerance(VisionConstants.AIM_TOLERANCE_DEGREES);
+        addRequirements(drivetrain);
+      }
+
+      @Override
+      public void initialize() {
+        controller.reset();
+      }
+
+      @Override
+      public void execute() {
+        double rotation = turn.getAsDouble();
+        if (vision.hasTarget()) {
+          rotation = Math.clamp(controller.calculate(vision.getTXDegrees()), -0.5, 0.5);
+        }
+        drivetrain.arcadeDrive(forward.getAsDouble(), rotation);
+      }
+
+      @Override
+      public void end(boolean interrupted) {
+        drivetrain.arcadeDrive(0.0, 0.0);
+      }
+    }
+    ```
+
+    綁定時傳入右搖桿：`new AimAtTarget(drivetrain, vision, () -> -driver.getLeftY(), () -> -driver.getRightX())`。
+
+    `this(...)` 是在一個建構子裡呼叫**另一個**建構子。兩個同名、參數不同的建構子叫做 **Overloading（多載）**。

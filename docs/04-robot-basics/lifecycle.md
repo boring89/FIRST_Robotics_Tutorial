@@ -174,7 +174,60 @@ public class Robot extends TimedRobot {
 2. 在 `robotPeriodic()` 裡加上計數器，每 5 秒印一次「robotPeriodic 還在執行」。在不同模式下它都會印嗎？
 3. 用計數的方式，讓 `autonomousPeriodic()` 在進入自動模式 2 秒後印出「2 秒到了」，而且只印一次。
 
+??? question "第 1 題參考答案"
+    ```text
+    Robot 建構子：程式啟動         ← 程式啟動時，只有一次
+    進入 Disabled
+    進入 Teleop
+    Teleop 已經執行約 1 秒        ← 每秒一次，持續到離開 Teleop
+    Teleop 已經執行約 2 秒
+    離開 Teleop，共執行了 ... 次迴圈
+    進入 Disabled
+    進入 Autonomous
+    ```
+
+    範例沒有覆寫 `disabledExit()` 和 `autonomousExit()`，所以離開 Disabled 和 Autonomous 時沒有訊息。
+
+??? question "第 2 題參考答案"
+    ```java
+    private int robotLoops = 0;
+
+    @Override
+    public void robotPeriodic() {
+      robotLoops++;
+      if (robotLoops % 250 == 0) {   // 250 次 × 20 ms = 5 秒
+        System.out.println("robotPeriodic 還在執行");
+      }
+    }
+    ```
+
+    **在所有模式下都會印**，包括 Disabled。`robotPeriodic()` 不管在哪個模式都會被呼叫。
+
 ??? question "第 3 題提示"
     在 `autonomousInit()` 把計數器歸零，在 `autonomousPeriodic()` 每次加 1。2 秒是 100 次迴圈。「只印一次」可以用 `==` 判斷，而不是 `>=`。
 
     WPILib 也有 `Timer` 類別可以計時，[第 9 章](../09-autonomous/timed.md) 會介紹。
+
+??? question "第 3 題參考答案"
+    ```java title="src/main/java/first/robot/Robot.java"
+    package first.robot;
+
+    import org.wpilib.framework.TimedRobot;
+
+    public class Robot extends TimedRobot {
+      private int autoLoops = 0;
+
+      @Override
+      public void autonomousInit() {
+        autoLoops = 0;
+      }
+
+      @Override
+      public void autonomousPeriodic() {
+        autoLoops++;
+        if (autoLoops == 100) {   // 100 次 × 20 ms = 2 秒，只有剛好等於 100 時印一次
+          System.out.println("2 秒到了");
+        }
+      }
+    }
+    ```

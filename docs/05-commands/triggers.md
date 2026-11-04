@@ -105,3 +105,20 @@ driver.rightBumper()
 1. 把 `faceDown` 綁定為按住吸入、`faceRight` 綁定為按住吐出，部署並測試。
 2. 把吸入改成 `toggleOnTrue`，比較兩種操作感覺有什麼不同。哪一種比較適合比賽？為什麼？
 3. 加一個 Trigger：拿到遊戲物件時，讓手把震動 0.5 秒。（提示：`driver.getHID().setRumble(...)`，可以用 `startEnd` 搭配 `withTimeout`；查查看 `setRumble` 需要什麼參數）
+
+??? question "第 2 題參考答案"
+    - **`whileTrue`**（按住吸入）：放開就停，駕駛不用記住現在是開還是關，比較直覺
+    - **`toggleOnTrue`**（按一下開、再按一下關）：駕駛的手指可以休息，但容易忘記現在的狀態
+
+    吸入通常用 `whileTrue` 比較適合：搭配「拿到物件自動停止」，駕駛只要按住到拿到為止。`toggleOnTrue` 比較適合長時間持續的動作，例如比賽中一直讓 Shooter 預轉。
+
+??? question "第 3 題參考答案"
+    ```java
+    new Trigger(intake::hasGamePiece).onTrue(
+        Commands.startEnd(
+                () -> driver.getHID().setRumble(RumbleType.LEFT_RUMBLE, 1.0),
+                () -> driver.getHID().setRumble(RumbleType.LEFT_RUMBLE, 0.0))
+            .withTimeout(0.5));
+    ```
+
+    `RumbleType` 要 `import org.wpilib.driverstation.GenericHID.RumbleType;`。`setRumble` 的第二個參數是強度（0.0～1.0）。這個 Command 不需要任何 Subsystem，所以不會中斷其他 Command。

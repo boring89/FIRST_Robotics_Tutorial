@@ -178,5 +178,12 @@ src/main/java/first/robot/
 3. 在 Elastic 上找到 `Intake/HasGamePiece`，用手遮住光遮斷感測器，看數值的變化。
 4. 試試看：發射的時候按住 `faceDown`，會發生什麼事？用「Requirements」解釋。
 
+??? question "第 2 題參考答案"
+    ```java
+    driver.faceLeft().onTrue(ScoringCommands.intakeThenShoot(intake, shooter));
+    ```
+
+    `intakeThenShoot` 是[組合 Command 第 1 題](composition.md#小練習)寫的方法，要先加進 `ScoringCommands`。
+
 ??? question "第 4 題參考答案"
     發射會被中斷，改成執行吸入。因為發射和吸入都需要 Intake，新啟動的吸入 Command 會中斷正在使用 Intake 的發射 Command。發射被中斷時，Shooter 的 `spinCommand()` 也跟著結束，馬達停止。

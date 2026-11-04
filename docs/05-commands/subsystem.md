@@ -211,3 +211,35 @@ Default command **不應該自己結束**，否則 Scheduler 每次迴圈都會�
 1. 照著範例在你的專案裡建立 `Intake.java`，並在 `Constants.java` 加上需要的常數。
 2. 在 `Intake` 加一個方法 `public boolean isRunning()`，馬達有在轉時回傳 `true`，並在 `periodic()` 裡用 Telemetry 顯示它。（提示：在 `setThrottle()` 和 `stop()` 裡記錄目前的輸出）
 3. 參考 `Intake`，寫一個 `Shooter` Subsystem，有一個 `spinCommand()`：Command 執行時以 `SHOOT_THROTTLE` 轉動，結束時停止。（答案在 [組合 Command](composition.md)）
+
+??? question "第 2 題參考答案"
+    用一個欄位記錄目前的輸出：
+
+    ```java
+    private double throttle = 0.0;
+
+    public void setThrottle(double throttle) {
+      this.throttle = throttle;
+      motor.setThrottle(throttle);
+    }
+
+    public void stop() {
+      throttle = 0.0;
+      motor.stopMotor();
+    }
+
+    public boolean isRunning() {
+      return throttle != 0.0;
+    }
+
+    @Override
+    public void periodic() {
+      Telemetry.log("Intake/HasGamePiece", hasGamePiece());
+      Telemetry.log("Intake/IsRunning", isRunning());
+    }
+    ```
+
+    因為所有的 Command 都是透過 `setThrottle()` 和 `stop()` 控制馬達，只要在這兩個地方記錄，`isRunning()` 就一定是對的。
+
+??? question "第 3 題參考答案"
+    完整的 `Shooter` 在[組合 Command](composition.md#shooter-subsystem) 那頁。重點是 `spinCommand()` 用 `startEnd`：開始時轉、結束時停。

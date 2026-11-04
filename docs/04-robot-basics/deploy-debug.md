@@ -187,3 +187,22 @@ Telemetry.log("Gamepad/FaceDown", gamepad.getFaceDownButton());
 2. 打開 Elastic，連上機器人，找到 `Motor/Throttle`，推動搖桿看數值變化。
 3. 在 Telemetry 加上馬達控制器回報的資料。（提示：REV 用 `motor.getAppliedOutput().get()`；CTRE 用 `motor.getDutyCycle().getValueAsDouble()`）
 4. 故意在 `teleopPeriodic()` 裡寫一個會出錯的程式（例如呼叫一個 `null` 物件的方法），部署後在 RioLog 找到錯誤訊息，指出是哪一行。
+
+??? question "第 3 題參考答案"
+    加在 `robotPeriodic()` 裡：
+
+    === "REV"
+
+        ```java
+        Telemetry.log("Motor/AppliedOutput", motor.getAppliedOutput().get(0.0));
+        Telemetry.log("Motor/CurrentAmps", motor.getOutputCurrent().get(0.0));
+        ```
+
+    === "CTRE"
+
+        ```java
+        Telemetry.log("Motor/DutyCycle", motor.getDutyCycle().getValueAsDouble());
+        Telemetry.log("Motor/CurrentAmps", motor.getStatorCurrent().getValueAsDouble());
+        ```
+
+    程式送出的 `throttle` 是「你**要求**的輸出」，控制器回報的是「它**實際**的輸出」。兩者不一樣時（例如被電流限制擋住），就知道問題出在哪裡。

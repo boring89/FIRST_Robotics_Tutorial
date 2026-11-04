@@ -165,5 +165,44 @@ void main() {
 2. 在 `main` 裡建立一個 `Shooter`，依序呼叫 `spinUp()`、印出 `isReady()`、呼叫 `stop()`、再印出 `isReady()`。
 3. 想一想：`Shooter` 的速度欄位為什麼應該是 `private`？
 
+??? question "第 1 題參考答案"
+    第 1、2 題寫在同一個檔案：
+
+    ```java title="ShooterDemo.java"
+    class Shooter {
+        private final int canId;
+        private double speed = 0.0;
+
+        public Shooter(int canId) {
+            this.canId = canId;
+        }
+
+        public void spinUp() {
+            speed = 1.0;
+        }
+
+        public void stop() {
+            speed = 0.0;
+        }
+
+        public boolean isReady() {
+            return speed > 0.9;
+        }
+    }
+
+    void main() {
+        Shooter shooter = new Shooter(15);
+
+        shooter.spinUp();
+        IO.println("轉起來之後：" + shooter.isReady());   // true
+
+        shooter.stop();
+        IO.println("停止之後：" + shooter.isReady());     // false
+    }
+    ```
+
+??? question "第 2 題參考答案"
+    見第 1 題的 `main()`：依序 `spinUp()` → 印出 `true` → `stop()` → 印出 `false`。
+
 ??? question "第 3 題參考答案"
     如果速度是 `public`，任何地方的程式都能直接改它，可能設成超出範圍的值，或是在不該發射的時候改動它。設成 `private`，所有修改都必須經過 `Shooter` 自己的方法，檢查和限制只要寫在一個地方。

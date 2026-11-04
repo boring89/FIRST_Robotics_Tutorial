@@ -112,6 +112,20 @@ void main() {
 2. 寫一個方法 `boolean isArmSafe(double angle)`，角度在 0 到 120 之間回傳 `true`，否則回傳 `false`。
 3. 改寫上一頁的 `ClampSpeed.java`，把限制速度的部分改成呼叫 `clamp` 方法。
 
+??? question "第 1 題參考答案"
+    ```java title="DegreesToRadians.java"
+    double degreesToRadians(double degrees) {
+        return degrees * Math.PI / 180;
+    }
+
+    void main() {
+        IO.println(degreesToRadians(180));   // 3.14159…（π）
+        IO.println(degreesToRadians(90));    // 1.5707…（π/2）
+    }
+    ```
+
+    Java 其實也有內建的 `Math.toRadians()`，結果一樣。
+
 ??? question "第 2 題參考答案"
     ```java
     boolean isArmSafe(double angle) {
@@ -120,3 +134,32 @@ void main() {
     ```
 
     條件本身就是 `boolean`，可以直接 `return`，不需要寫 `if (...) return true; else return false;`。
+
+??? question "第 3 題參考答案"
+    ```java title="ClampSpeedWithMethod.java"
+    double clamp(double value, double min, double max) {
+        if (value > max) {
+            return max;
+        }
+        if (value < min) {
+            return min;
+        }
+        return value;
+    }
+
+    void main() {
+        double[] requests = {0.5, 1.3, -2.0, 0.95};
+
+        for (int i = 0; i < requests.length; i++) {
+            double speed = clamp(requests[i], -1.0, 1.0);
+
+            if (Math.abs(speed) > 0.9) {
+                IO.println("第 " + i + " 筆：" + speed + "（接近全速）");
+            } else {
+                IO.println("第 " + i + " 筆：" + speed);
+            }
+        }
+    }
+    ```
+
+    原本的 `if / else if` 變成一行 `clamp(...)`，迴圈裡的程式短很多，也更容易看出它在做什麼。
