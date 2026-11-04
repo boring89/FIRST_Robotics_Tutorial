@@ -217,6 +217,15 @@ nav:
           - AdvantageKit: 18-hardware-abstraction/advantagekit.md
           - Log replay: 18-hardware-abstraction/replay.md
           - 延伸學習: 18-hardware-abstraction/further.md
+  - 比賽機器人:
+      - 第 19 章 Superstructure 與狀態機:
+          - 19-superstructure/index.md
+          - 各做各的問題: 19-superstructure/problem.md
+          - 做法一：組合 Command: 19-superstructure/commands.md
+          - 狀態機: 19-superstructure/state-machine.md
+          - 做法二：Superstructure: 19-superstructure/superstructure.md
+          - 測試狀態機: 19-superstructure/testing.md
+          - 延伸學習: 19-superstructure/further.md
   - 附錄:
       - 名詞對照表: appendix/glossary.md
       - 寫作規範: appendix/style-guide.md

@@ -54,14 +54,19 @@
 | Follower | 跟隨者 | 自動跟著另一顆馬達（Leader）動作的馬達 |
 | Gain | 增益（參數） | 控制器的參數，例如 kP、kV |
 | Gamepad | 手把 | Xbox、PS4 / PS5 手把等 |
+| Goal | 想要的狀態 | 駕駛或自動程式希望機器人做什麼；狀態機依照它和感測器決定目前的狀態 |
 | Hardware abstraction | 硬體抽象化 | 把和硬體溝通的程式藏在介面後面，邏輯不知道底下是真的硬體、模擬還是重播 |
 | Heading | 朝向 | 機器人面向場地的哪個方向 |
 | Heading lock | 保持朝向 | 駕駛沒有在轉的時候，用 PID 把 Swerve 的朝向鎖住 |
 | Idle mode | 閒置模式 | 馬達輸出為 0 時的行為，分成 Brake 和 Coast |
 | IMU (Inertial Measurement Unit) | 慣性測量單元 | 量測轉向和加速度，常用來知道機器人朝哪個方向 |
+| Indexing | 送料定位 | 吸到物件後，再把它送到 Shooter 前面固定位置的步驟 |
 | Integral windup | 積分飽和 | PID 的 I 項累積過大，造成機構猛然衝出去 |
+| Interlock | 互鎖 | 「A 沒到某個位置之前，B 不能動」的保護規則，例如升降機構沒升高前手臂不能轉出去 |
 | Interrupt | 中斷 | Command 在自己結束之前被停止，例如被需要同一個 Subsystem 的 Command 搶走 |
+| Interruption behavior | 中斷行為 | 新的 Command 需要同一個 Subsystem 時，誰被取消：`CANCEL_SELF`（預設）或 `CANCEL_INCOMING` |
 | Inverted | 反轉 | 讓馬達的正方向反過來的設定 |
+| JUnit | JUnit | Java 最常用的單元測試工具，測試放在 `src/test/java/` |
 | Kinematics | 運動學 | 機器人整體速度和各個輪子速度之間的換算 |
 | Limit switch | 極限開關 | 機構碰到時觸發的開關，用來限制行程 |
 | Log | 記錄檔 | 機器人執行時記錄下來的資料，事後可以回放 |
@@ -105,6 +110,7 @@
 | Standard deviation | 標準差 | 在 Pose estimation 中代表一筆資料有多不可信，越大越不可信 |
 | State machine | 狀態機 | 用「狀態」和「狀態之間的轉換」描述機構行為的方法 |
 | Subsystem | Subsystem（子系統） | Commands v2 裡代表一個機構的類別 |
+| Superstructure | 上層結構 | 底盤以外、會互相影響的機構的合稱，也常指協調它們的 Subsystem |
 | Swerve drive | 全向轉向底盤 | 每個輪子都能獨立轉向和驅動的底盤 |
 | Swerve module | Swerve 模組 | Swerve 底盤的一個角落，包含驅動馬達、轉向馬達和絕對式編碼器 |
 | SysId | 系統識別 | 量測機構特性、算出 Feedforward 參數的 WPILib 工具 |
@@ -113,6 +119,7 @@
 | Tank drive | 坦克式操控 | 左右搖桿分別控制左右兩邊輪子的底盤操控方式 |
 | Telemetry | 遙測 | 把機器人的資料傳回電腦顯示或記錄 |
 | Timestamp | 時間戳記 | 資料是在什麼時間點量到的 |
+| Transition | 轉換 | 狀態機裡，條件成立時從一個狀態換到另一個狀態 |
 | Trapezoid profile | 梯形速度曲線 | 先加速、等速巡航、再減速的 Motion Profile |
 | Trigger | Trigger（觸發條件） | 條件成立時啟動 Command，例如按下按鈕 |
 | Twist2d | 位移量 | 一小段時間內，機器人往前、往左移動多少、轉了多少 |
