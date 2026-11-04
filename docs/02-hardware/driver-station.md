@@ -48,6 +48,11 @@ FRC 最常用的是 Xbox 手把，PS4 / PS5 手把也可以用。程式讀手把
 - **Axis（軸）**：搖桿和板機，數值是連續的，例如 -1.0 到 1.0
 - **Button（按鈕）**：只有按下 / 放開兩種狀態
 
+<figure markdown="span">
+  ![Xbox One 手把](../assets/photos/gamepad.jpg){ loading=lazy }
+  <figcaption>Xbox One 手把：兩支搖桿和前方的板機是 Axis，右側 A / B / X / Y 和其他按鈕是 Button</figcaption>
+</figure>
+
 !!! info "2027 新改動：通用手把類別用方向命名按鈕"
     WPILib 2027 新增了通用的 `Gamepad` 類別，右側四顆按鈕用**位置**命名：`faceUp`、`faceDown`、`faceLeft`、`faceRight`。這樣不管用 Xbox 還是 PS 手把，同一個位置的按鈕在程式裡名稱都一樣。
 

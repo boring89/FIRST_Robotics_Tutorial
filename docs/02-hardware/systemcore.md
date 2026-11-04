@@ -20,6 +20,11 @@
 
 可以把 Systemcore 想成一台跑 Linux 的小電腦，加上一堆專門接機器人元件的連接埠。
 
+<figure markdown="span">
+  ![Systemcore 正面示意圖](../assets/photos/systemcore.jpg){ loading=lazy }
+  <figcaption>Systemcore 正面（示意圖）。中間的螢幕開機後會顯示 Wi-Fi 熱點的名稱、密碼和 IP 位址</figcaption>
+</figure>
+
 ### 連接埠
 
 根據目前公開的 alpha / beta 測試資料，Systemcore 的主要連接埠如下：
@@ -32,6 +37,11 @@
 | USB | 有 | 接 USB 隨身碟（存 log）、相機等 |
 | Ethernet | 有 | 接無線電、協同處理器 |
 | 內建 IMU | 1 個 | 不用外接就能知道機器人的轉向 |
+
+<figure markdown="span">
+  ![Systemcore 的連接埠，Smart I/O 用紅框標出](../assets/photos/systemcore-ports.jpg){ loading=lazy }
+  <figcaption>上排：電源、Bridge、LINK（USB-C）、CAN BUS 0～4，右邊是 Ethernet。下排：RSL、Smart I/O 0～5（紅框）、USB 0～3、I2C 0～1</figcaption>
+</figure>
 
 **CAN (Controller Area Network，CAN 匯流排)** 是 FRC 最主要的通訊方式。一條 CAN 線可以串接很多裝置，每個裝置用一個 **CAN ID（CAN 編號）** 區分。2027 的 Systemcore 有 5 條 CAN 匯流排，系統裡的名稱是 `can_s0` 到 `can_s4`。
 

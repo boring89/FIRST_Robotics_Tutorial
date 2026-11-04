@@ -59,3 +59,11 @@ ChassisVelocities robotRelative = fieldRelative.toRobotRelative(getHeading());
 
 - [WPILib 文件：Drive classes](https://docs.wpilib.org/en/latest/docs/software/hardware-apis/motors/wpi-drive-classes.html)：`DifferentialDrive` 等類別的說明
 - [WPILib 文件：Kinematics and Odometry](https://docs.wpilib.org/en/latest/docs/software/kinematics-and-odometry/index.html)：Swerve、差速、Mecanum 的 Kinematics（部分內容可能還是 2026 的類別名稱）
+
+## 圖片來源
+
+這一章用到的網路圖片，依照各自的授權條款使用。
+
+| 圖片 | 原始檔案 | 作者 | 授權 | 修改 |
+| --- | --- | --- | --- | --- |
+| [Swerve 底盤](swerve.md#swerve-模組) | [WCPSwerveX2i.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/software/hardware-apis/motors/images/WCPSwerveX2i.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG |

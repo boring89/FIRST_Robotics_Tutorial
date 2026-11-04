@@ -33,3 +33,22 @@
 ### 接線規則
 
 FRC 對機器人的電路有詳細的規定，例如：每種元件要用多大的斷路器、電線要多粗、哪些地方要用什麼顏色的線。這些規定寫在每年的 **賽季手冊 (Game Manual)** 的機器人規則 (Robot rules) 章節。2027 的規則公布後，這節會整理程式組需要知道的部分。
+
+## 圖片來源
+
+這一章用到的網路圖片，依照各自的授權條款使用。
+
+| 圖片 | 原始檔案 | 作者 | 授權 | 修改 |
+| --- | --- | --- | --- | --- |
+| [Systemcore 正面](systemcore.md#機器人的大腦) | [systemcore.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/controls-overviews/images/control-system-hardware/systemcore.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG |
+| [Systemcore 的連接埠](systemcore.md#連接埠) | [systemcore-smartio.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/hardware/sensors/images/systemcore/systemcore-smartio.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG，透明背景改成白色 |
+| [電池](power.md#電從哪裡來) | [robot-battery.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/controls-overviews/images/control-system-hardware/robot-battery.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG，透明背景改成白色，和主斷路器合併成一張 |
+| [主斷路器](power.md#電從哪裡來) | [circuit-breaker.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/controls-overviews/images/control-system-hardware/circuit-breaker.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG，透明背景改成白色，和電池合併成一張 |
+| [SPARK MAX](motors.md#rev-和-ctre-的常見產品) | [spark-max-motor-controller.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/controls-overviews/images/control-system-hardware/spark-max-motor-controller.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG，透明背景改成白色，和 SPARK Flex 合併成一張 |
+| [SPARK Flex](motors.md#rev-和-ctre-的常見產品) | [spark-flex.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/controls-overviews/images/control-system-hardware/spark-flex.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG，透明背景改成白色，和 SPARK MAX 合併成一張 |
+| [Talon FX](motors.md#rev-和-ctre-的常見產品) | [talonfx.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/controls-overviews/images/control-system-hardware/talonfx.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG，透明背景改成白色，加白邊 |
+| [CANcoder](sensors.md#encoder編碼器) | [cancoder-status-lights.png](https://github.com/wpilibsuite/frc-docs/blob/main/source/docs/hardware/hardware-basics/images/status-lights/cancoder-status-lights.png) | [WPILib frc-docs](https://github.com/wpilibsuite/frc-docs) 貢獻者 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) | 轉成 JPG，透明背景改成白色，加白邊 |
+| [極限開關](sensors.md#數位感測器) | [LimitSwitch CherryD43X.jpg](https://commons.wikimedia.org/wiki/File:LimitSwitch_CherryD43X.jpg) | Pradeep717 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant) | 縮小 |
+| [Xbox One 手把](driver-station.md#手把) | [Microsoft-Xbox-One-controller.jpg](https://commons.wikimedia.org/wiki/File:Microsoft-Xbox-One-controller.jpg) | Evan-Amos | 公有領域 | 縮小 |
+
+極限開關的圖片以 CC BY-SA 4.0 授權，縮小後的版本同樣以 CC BY-SA 4.0 授權。
